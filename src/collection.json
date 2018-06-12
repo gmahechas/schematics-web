@@ -1,0 +1,45 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "models": {
+      "description": "A blank schematic.",
+      "factory": "./models",
+      "schema": "./models/schema.json"
+    },
+    "graphql": {
+      "description": "A blank schematic.",
+      "factory": "./graphql",
+      "schema": "./graphql/schema.json"
+    },
+    "services": {
+      "description": "A blank schematic.",
+      "factory": "./services",
+      "schema": "./services/schema.json"
+    },
+    "store": {
+      "description": "A blank schematic.",
+      "factory": "./store",
+      "schema": "./store/schema.json"
+    },
+    "guards": {
+      "description": "A blank schematic.",
+      "factory": "./guards",
+      "schema": "./guards/schema.json"
+    },
+    "module": {
+      "description": "A blank schematic.",
+      "factory": "./module",
+      "schema": "./module/schema.json"
+    },
+    "containers": {
+      "description": "A blank schematic.",
+      "factory": "./containers",
+      "schema": "./containers/schema.json"
+    },
+    "components": {
+      "description": "A blank schematic.",
+      "factory": "./components",
+      "schema": "./components/schema.json"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<app-form-<%= name %> *ngIf="!(<%= name %>$ | async) as <%= name %>" (submitted)="onStore($event)">
+  <h3>Agregar Pais</h3>
+  <button pButton type="submit" label="Guardar" class="ui-button-secondary"></button>
+  <button pButton type="button" label="Cancelar" class="ui-button-secondary" (click)="onCancel()"></button>
+</app-form-<%= name %>>
+
+<app-form-<%= name %> *ngIf="(<%= name %>$ | async) as <%= name %>" (submitted)="onUpdate($event)" [<%= name %>]="<%= name %>">
+  <h3>Editar Pais</h3>
+  <button pButton type="submit" label="Guardar" class="ui-button-secondary"></button>
+  <button pButton type="button" label="Eliminar" class="ui-button-secondary" (click)="onDestroy(<%= name %>)"></button>
+  <button pButton type="button" label="Cancelar" class="ui-button-secondary" (click)="onCancel()"></button>
+</app-form-<%= name %>>

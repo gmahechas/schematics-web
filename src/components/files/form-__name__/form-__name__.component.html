@@ -1,0 +1,12 @@
+<form [formGroup]="<%= name %>Form" (ngSubmit)="onSubmit(<%= name %>Form)">
+
+  <ng-content select="h3"></ng-content>
+
+  <div class="ui-g">
+    <div class="ui-g-6 ui-g-nopad">
+      <br>
+      <ng-content select="button"></ng-content>
+    </div>
+  </div>
+
+</form>
