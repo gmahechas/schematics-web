@@ -28,17 +28,14 @@ export class <%= classify(name) %>Service {
   store(<%= name %>: fromModels.<%= classify(name) %>): Observable<any> {
     return this.apollo.mutate<fromModels.Store<%= classify(name) %>>({
       mutation: fromGraphql.store,
-      variables: {
-      }
+      variables: <%= name %>
     });
   }
 
   update(<%= name %>: fromModels.<%= classify(name) %>): Observable<any> {
     return this.apollo.mutate<fromModels.Update<%= classify(name) %>>({
       mutation: fromGraphql.update,
-      variables: {
-        <%= name %>_id: <%= name %>.<%= name %>_id
-      }
+      variables: <%= name %>
     });
   }
 

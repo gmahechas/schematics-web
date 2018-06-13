@@ -1,5 +1,5 @@
 <form [formGroup]="searchForm<%= classify(name) %>" (ngSubmit)="onSubmit(searchForm<%= classify(name) %>)">
-  <span>Buscar Pais</span>
+  <span>Buscar</span>
   <button pButton type="submit" label="Buscar" [disabled]="searchForm<%= classify(name) %>.invalid" class="ui-button-secondary"></button>
   <button pButton type="button" label="Agregar" (click)="onCreate()" class="ui-button-secondary"></button>
 </form>

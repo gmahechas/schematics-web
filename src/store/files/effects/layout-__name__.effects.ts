@@ -92,9 +92,7 @@ export class Layout<%= classify(name) %>Effects {
     ofType<fromActions.StoreSuccessEntity>(fromActions.EntityActionTypes.StoreSuccessEntity),
     map(action => action.payload),
     tap((data: fromModels.Store<%= classify(name) %>) => {
-      this.store.dispatch(new fromActions.LoadEntity({
-        <%= name %>_id: data.store<%= classify(name) %>.<%= name %>_id
-      }));
+      this.store.dispatch(new fromActions.LoadEntity(data.store<%= classify(name) %>));
     })
   );
 
