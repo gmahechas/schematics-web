@@ -10,7 +10,6 @@ import { SharedModule } from '../../shared/shared.module';
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
-import * as fromServices from './services';
 import * as fromGuards from './guards';
 
 @NgModule({
@@ -25,7 +24,6 @@ import * as fromGuards from './guards';
     ...fromComponents.components
   ],
   providers: [
-    ...fromServices.services,
     ...fromGuards.guards
   ]
 })

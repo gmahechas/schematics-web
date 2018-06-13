@@ -7,7 +7,9 @@ import * as fromModels from './../models';
 
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class <%= classify(name) %>Service {
 
   queryRef: QueryRef<fromModels.Pagination<%= classify(name) %>>;
