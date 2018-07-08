@@ -13,7 +13,8 @@ export default function (options: any): Rule {
     schematic('graphql', { name: options.name }),
     schematic('guards', { name: options.name }),
     schematic('models', { name: options.name }),
-    schematic('services', { name: options.name }), */
+    schematic('services', { name: options.name }),
+    schematic('shared', { name: options.name }), */
     schematic('store', { name: options.name }),
     mergeWith(apply(url('./files'), [
       template({ ...stringUtils, ...options }),

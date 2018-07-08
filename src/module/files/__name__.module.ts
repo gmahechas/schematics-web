@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { routes } from './<%= name %>.routes';
 
 import { StoreModule } from '@ngrx/store';
 import { reducers, effects } from './store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '../../shared/shared.module';
+import { <%= classify(name) %>RoutingModule } from './<%= name %>-routing.module';
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
@@ -14,10 +13,10 @@ import * as fromGuards from './guards';
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),
+    SharedModule,
+    <%= classify(name) %>RoutingModule,
     StoreModule.forFeature('<%= name %>', reducers),
     EffectsModule.forFeature(effects),
-    SharedModule
   ],
   declarations: [
     ...fromContainers.containers,
