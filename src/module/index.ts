@@ -6,14 +6,14 @@ const stringUtils = { classify };
 export default function (options: any): Rule {
   return chain([
     (_tree: Tree, context: SchematicContext) => {
-      context.logger.info('My Full Schematic: ' + JSON.stringify(options));
+      context.logger.info('Module Schematic: ' + JSON.stringify(options));
     },
-    schematic('components', { name: options.name }),
+/*     schematic('components', { name: options.name }),
     schematic('containers', { name: options.name }),
     schematic('graphql', { name: options.name }),
     schematic('guards', { name: options.name }),
     schematic('models', { name: options.name }),
-    schematic('services', { name: options.name }),
+    schematic('services', { name: options.name }), */
     schematic('store', { name: options.name }),
     mergeWith(apply(url('./files'), [
       template({ ...stringUtils, ...options }),

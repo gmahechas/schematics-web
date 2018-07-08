@@ -9,6 +9,10 @@ export interface State {
 const initialState: State = {
   loaded: false,
   query: {
+    <%= name %>: {
+      <%= name %>_id: ''
+      // TODO
+    }
   }
 };
 
@@ -16,7 +20,8 @@ export function reducer(state = initialState, action: EntityActions): State {
 
   switch (action.type) {
 
-    case EntityActionTypes.LoadEntity: {
+    case EntityActionTypes.LoadEntity:
+    case EntityActionTypes.LoadEntityShared: {
       return {
         ...state,
         loaded: false,

@@ -2,8 +2,18 @@ import { DocumentNode } from 'graphql';
 import gql from 'graphql-tag';
 
 export const pagination: DocumentNode = gql`
-query pagination<%= classify(name) %>($<%= name %>_id: ID, $limit: Int, $page: Int) {
-  pagination<%= classify(name) %>(<%= name %>_id: $<%= name %>_id, limit: $limit, page: $page) {
+query pagination<%= classify(name) %>(
+  $<%= name %>_id: ID,
+  // TODO
+  $limit: Int,
+  $page: Int
+) {
+  pagination<%= classify(name) %>(
+    <%= name %>_id: $<%= name %>_id,
+    // TODO
+    limit: $limit,
+    page: $page
+  ) {
     total
     per_page
     current_page
@@ -11,6 +21,7 @@ query pagination<%= classify(name) %>($<%= name %>_id: ID, $limit: Int, $page: I
     to
     data {
       <%= name %>_id
+      // TODO
       <%= name %>_created_at
       <%= name %>_updated_at
       <%= name %>_deleted_at
@@ -20,16 +31,17 @@ query pagination<%= classify(name) %>($<%= name %>_id: ID, $limit: Int, $page: I
 `;
 
 export const store: DocumentNode = gql`
-mutation store<%= classify(name) %>($arg1: String) {
-  store<%= classify(name) %>(arg1: $arg1) {
+mutation store<%= classify(name) %>(// TODO) {
+  store<%= classify(name) %>(// TODO) {
     <%= name %>_id
+    // TODO
   }
 }
 `;
 
 export const update: DocumentNode = gql`
-mutation update<%= classify(name) %>($<%= name %>_id: ID!) {
-    update<%= classify(name) %>(<%= name %>_id: $<%= name %>_id) {
+mutation update<%= classify(name) %>($<%= name %>_id: ID!, // TODO) {
+    update<%= classify(name) %>(<%= name %>_id: $<%= name %>_id, // TODO) {
       <%= name %>_id
     }
 }
@@ -39,6 +51,7 @@ export const destroy: DocumentNode = gql`
 mutation destroy<%= classify(name) %>($<%= name %>_id: ID!) {
   destroy<%= classify(name) %>(<%= name %>_id: $<%= name %>_id) {
     <%= name %>_id
+    // TODO
   }
 }
 `;

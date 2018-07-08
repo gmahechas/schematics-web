@@ -62,7 +62,12 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
       select(fromStore.getLoaded),
       tap(loaded => {
         if (!loaded) {
-          this.store.dispatch(new fromStore.LoadEntity({ <%= name %>_id: +<%= name %>_id }));
+          this.store.dispatch(new fromStore.LoadEntity({
+            <%= name %>: {
+              <%= name %>_id: <%= name %>_id,
+              // TODO
+            }
+          }));
         }
       }),
       filter(loaded => loaded),

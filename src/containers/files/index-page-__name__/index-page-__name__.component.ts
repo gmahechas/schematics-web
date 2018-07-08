@@ -38,7 +38,8 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
     this.configTable = {
       dataKey: '<%= name %>_id',
       cols: [
-        { field: '<%= name %>_id', header: 'Id', style: { width: '10%' } }
+        { field: '<%= name %>_id', header: 'Id', style: { width: '10%' } },
+        // TODO
       ]
     };
   }
@@ -46,7 +47,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   ngOnInit() { }
 
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
-    this.store.dispatch(new fromStore.LoadEntity({ ...<%= name %>Search, limit: 20, page: 1 }));
+    this.store.dispatch(new fromStore.LoadEntity({ <%= name %>: <%= name %>Search.<%= name %>, limit: 20, page: 1 }));
   }
 
   onCreate() {

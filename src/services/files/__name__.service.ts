@@ -21,7 +21,11 @@ export class <%= classify(name) %>Service {
   load(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
     this.queryRef = this.apollo.watchQuery<fromModels.Pagination<%= classify(name) %>, fromModels.Search<%= classify(name) %>>({
       query: fromGraphql.pagination,
-      variables: search<%= classify(name) %>
+      variables: {
+        ...search<%= classify(name) %>.<%= name %>,
+        limit: search<%= classify(name) %>.limit,
+        page: search<%= classify(name) %>.page
+      }
     });
 
     return this.queryRef.valueChanges;
@@ -53,10 +57,15 @@ export class <%= classify(name) %>Service {
   pagination(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
     return this.queryRef.fetchMore({
       query: fromGraphql.pagination,
-      variables: search<%= classify(name) %>,
+      variables: {
+        <%= name %>_id: search<%= classify(name) %>.<%= name %>.<%= name %>_id,
+        // TODO
+        limit: search<%= classify(name) %>.limit,
+        page: search<%= classify(name) %>.page
+      },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) { return prev; }
-        return fetchMoreResult.data;
+        return fetchMoreResult;
       }
     });
   }

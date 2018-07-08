@@ -15,14 +15,18 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
   @Output() submitted: EventEmitter<<%= classify(name) %>> = new EventEmitter<<%= classify(name) %>>();
 
   <%= name %>Form: FormGroup = this.formBuilder.group({
-
+    <%= name %>: this.formBuilder.group({
+      // TODO
+    })
   });
 
   ngOnChanges() {
     if (this.<%= name %>) {
       this.<%= name %>Form.reset();
       this.<%= name %>Form.setValue({
-
+        <%= name %>: {
+          // TODO
+        }
       });
     }
   }
@@ -40,13 +44,13 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
       if (this.<%= name %>Form.dirty && this.<%= name %>Form.valid) {
         const updated<%= classify(name) %> = {
           ...this.<%= name %>,
-          ...<%= name %>Form.value
+          ...<%= name %>Form.value.<%= name %>
         };
         this.submitted.emit(updated<%= classify(name) %>);
       }
     } else {
       if (this.<%= name %>Form.valid) {
-        this.submitted.emit(<%= name %>Form.value);
+        this.submitted.emit(<%= name %>Form.value.<%= name %>);
       }
     }
 

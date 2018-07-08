@@ -1,5 +1,8 @@
 <form [formGroup]="searchForm<%= classify(name) %>" (ngSubmit)="onSubmit(searchForm<%= classify(name) %>)">
-  <span>Buscar</span>
+  Buscar
+  <app-input-text-shared [group]="searchForm<%= classify(name) %>" [groupName]="'<%= name %>'" [controlName]="'<%= name %>_id'" [placeholder]="'Id'"></app-input-text-shared>
+  <!-- TODO -->
   <button pButton type="submit" label="Buscar" [disabled]="searchForm<%= classify(name) %>.invalid" class="ui-button-secondary"></button>
   <button pButton type="button" label="Agregar" (click)="onCreate()" class="ui-button-secondary"></button>
+  <button pButton type="button" label="Limpiar" (click)="searchForm<%= classify(name) %>.reset()" class="ui-button-secondary"></button>
 </form>

@@ -22,7 +22,8 @@ export class Layout<%= classify(name) %>Effects {
       fromActions.EntityActionTypes.StoreEntity,
       fromActions.EntityActionTypes.UpdateEntity,
       fromActions.EntityActionTypes.DestroyEntity,
-      fromActions.EntityActionTypes.PaginateEntity
+      fromActions.EntityActionTypes.PaginateEntity,
+      fromActions.EntityActionTypes.LoadEntityShared
     ),
     tap(() => {
       this.store.dispatch(new fromCore.ShowSpinner);
@@ -33,6 +34,7 @@ export class Layout<%= classify(name) %>Effects {
   loadSuccessEntity$ = this.actions$.pipe(
     ofType(
       fromActions.EntityActionTypes.LoadSuccessEntity,
+      fromActions.EntityActionTypes.LoadSuccessEntityShared
     ),
     tap(() => {
       this.store.dispatch(new fromCore.CloseSpinner);
@@ -92,7 +94,12 @@ export class Layout<%= classify(name) %>Effects {
     ofType<fromActions.StoreSuccessEntity>(fromActions.EntityActionTypes.StoreSuccessEntity),
     map(action => action.payload),
     tap((data: fromModels.Store<%= classify(name) %>) => {
-      this.store.dispatch(new fromActions.LoadEntity(data.store<%= classify(name) %>));
+      this.store.dispatch(new fromActions.LoadEntity({
+        <%= name %>: {
+          <%= name %>_id: String(data.store<%= classify(name) %>.<%= classify(name) %>_id),
+          // TODO
+        }
+      }));
     })
   );
 

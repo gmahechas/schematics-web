@@ -6,6 +6,14 @@
   "properties": {
     "name": {
       "type": "string"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default": []
     }
   },
   "required": [
