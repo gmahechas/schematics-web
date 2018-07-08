@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "model": {
+    "models": {
       "description": "A blank schematic.",
       "factory": "./models",
       "schema": "./models/schema.json"
@@ -21,7 +21,7 @@
       "factory": "./store",
       "schema": "./store/schema.json"
     },
-    "guard": {
+    "guards": {
       "description": "A blank schematic.",
       "factory": "./guards",
       "schema": "./guards/schema.json"

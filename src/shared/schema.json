@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "MavatecServices",
+  "id": "MavatecShared",
   "title": "Mavatec Shared Module in Module",
   "type": "object",
   "properties": {
