@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-import { Search<%= name %> } from './../../models/search-<%= name %>.model';
+import { Search<%= classify(name) %> } from './../../models/search-<%= name %>.model';
 
 @Component({
   selector: 'app-search-form-<%= name %>',

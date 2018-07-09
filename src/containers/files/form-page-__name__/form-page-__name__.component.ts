@@ -27,7 +27,7 @@ export class FormPage<%= classify(name) %>Component implements OnInit {
   }
 
   onStore(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new fromStore.StoreEntity(<%= name %>));
+    this.store.dispatch(new fromStore.StoreEntity({...<%= name %>})); // TODO
   }
 
   onUpdate(<%= name %>: <%= classify(name) %>) {

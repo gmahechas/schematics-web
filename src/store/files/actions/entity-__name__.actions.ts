@@ -16,9 +16,7 @@ export enum EntityActionTypes {
   DestroySuccessEntity = '[<%= classify(name) %>] Destroy Success Entity',
   DestroyFailEntity = '[<%= classify(name) %>] Destroy Fail Entity',
   PaginateEntity = '[<%= classify(name) %>] Paginate Entity',
-  LoadEntityShared = '[<%= classify(name) %>] Load Entity Shared',
-  LoadSuccessEntityShared = '[<%= classify(name) %>] Load Success Entity Shared',
-  LoadFailEntityShared = '[<%= classify(name) %>] Load Fail Entity Shared'
+  LoadEntityShared = '[<%= classify(name) %>] Load Entity Shared'
 }
 
 export class LoadEntity implements Action {

@@ -47,7 +47,12 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   ngOnInit() { }
 
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
-    this.store.dispatch(new fromStore.LoadEntity({ <%= name %>: <%= name %>Search.<%= name %>, limit: 20, page: 1 }));
+    this.store.dispatch(new fromStore.LoadEntity({ 
+      <%= name %>: <%= name %>Search.<%= name %>,
+      // TODO
+      limit: 20,
+      page: 1 
+    }));
   }
 
   onCreate() {

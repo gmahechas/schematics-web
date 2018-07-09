@@ -1,6 +1,8 @@
 export interface Search<%= classify(name) %> {
-  <%= name %>_id?: number;
-  // TODO
+  <%= name %>?: {
+    <%= name %>_id?: string;
+    // TODO
+  };
   limit?: number;
   page?: number;
 }

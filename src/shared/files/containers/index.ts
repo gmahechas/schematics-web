@@ -1,7 +1,7 @@
-import { DropdownPageCountryComponent } from './dropdown-page-country/dropdown-page-country.component';
+import { DropdownPage<%= classify(name) %>Component } from './dropdown-page-<%= name %>/dropdown-page-<%= name %>.component';
 
 export const containers: any[] = [
-  DropdownPageCountryComponent
+  DropdownPage<%= classify(name) %>Component
 ];
 
-export * from './dropdown-page-country/dropdown-page-country.component';
+export * from './dropdown-page-<%= name %>/dropdown-page-<%= name %>.component';

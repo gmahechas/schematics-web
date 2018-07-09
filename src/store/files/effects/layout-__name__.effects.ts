@@ -33,8 +33,7 @@ export class Layout<%= classify(name) %>Effects {
   @Effect({ dispatch: false })
   loadSuccessEntity$ = this.actions$.pipe(
     ofType(
-      fromActions.EntityActionTypes.LoadSuccessEntity,
-      fromActions.EntityActionTypes.LoadSuccessEntityShared
+      fromActions.EntityActionTypes.LoadSuccessEntity
     ),
     tap(() => {
       this.store.dispatch(new fromCore.CloseSpinner);
@@ -96,7 +95,7 @@ export class Layout<%= classify(name) %>Effects {
     tap((data: fromModels.Store<%= classify(name) %>) => {
       this.store.dispatch(new fromActions.LoadEntity({
         <%= name %>: {
-          <%= name %>_id: String(data.store<%= classify(name) %>.<%= classify(name) %>_id),
+          <%= name %>_id: String(data.store<%= classify(name) %>.<%= name %>_id),
           // TODO
         }
       }));
