@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
 import * as fromStore from './../../store';
@@ -11,9 +11,8 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-index-page-<%= name %>',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './index-page-<%= name %>.component.html',
-  styleUrls: ['./index-page-<%= name %>.component.scss']
+  styles: []
 })
 export class IndexPage<%= classify(name) %>Component implements OnInit {
 
@@ -38,7 +37,6 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
     this.configTable = {
       dataKey: '<%= name %>_id',
       cols: [
-        { field: '<%= name %>_id', header: 'Id', style: { width: '10%' } },
         // TODO
       ]
     };
@@ -47,11 +45,11 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   ngOnInit() { }
 
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
-    this.store.dispatch(new fromStore.LoadEntity({ 
+    this.store.dispatch(new fromStore.LoadEntity({
       <%= name %>: <%= name %>Search.<%= name %>,
       // TODO
       limit: 20,
-      page: 1 
+      page: 1
     }));
   }
 

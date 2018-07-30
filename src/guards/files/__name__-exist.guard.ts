@@ -66,7 +66,8 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
             <%= name %>: {
               <%= name %>_id: <%= name %>_id,
               // TODO
-            }
+            },
+            // TODO
           }));
         }
       }),
@@ -76,8 +77,8 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    return this.checkStore(route.params['<%= name %>_id']).pipe(
-      switchMap(() => this.hasEntity(route.params['<%= name %>_id']))
+    return this.checkStore(route.params.<%= name %>_id).pipe(
+      switchMap(() => this.hasEntity(route.params.<%= name %>_id))
     );
   }
 

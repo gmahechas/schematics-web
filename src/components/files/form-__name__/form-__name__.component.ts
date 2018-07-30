@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 import { <%= classify(name) %> } from './../../models/<%= name %>.model';
 
@@ -7,7 +7,7 @@ import { <%= classify(name) %> } from './../../models/<%= name %>.model';
   selector: 'app-form-<%= name %>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './form-<%= name %>.component.html',
-  styleUrls: ['./form-<%= name %>.component.scss']
+  styles: []
 })
 export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
 
@@ -17,8 +17,13 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
   <%= name %>Form: FormGroup = this.formBuilder.group({
     <%= name %>: this.formBuilder.group({
       // TODO
-    })
+    }),
+    // TODO
   });
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnChanges() {
     if (this.<%= name %>) {
@@ -26,14 +31,11 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
       this.<%= name %>Form.setValue({
         <%= name %>: {
           // TODO
-        }
+        },
+        // TODO
       });
     }
   }
-
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
 
   ngOnInit() {
   }
@@ -53,10 +55,11 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
       }
     } else {
       if (this.<%= name %>Form.valid) {
-        this.submitted.emit(<%= name %>Form.value.<%= name %>);
+        this.submitted.emit(<%= name %>Form.value);
       }
     }
 
   }
 
 }
+

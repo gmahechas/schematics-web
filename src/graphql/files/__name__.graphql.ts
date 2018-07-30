@@ -35,6 +35,9 @@ mutation store<%= classify(name) %>(// TODO) {
   store<%= classify(name) %>(// TODO) {
     <%= name %>_id
     // TODO
+    <%= name %>_created_at
+    <%= name %>_updated_at
+    <%= name %>_deleted_at
   }
 }
 `;
@@ -43,6 +46,10 @@ export const update: DocumentNode = gql`
 mutation update<%= classify(name) %>($<%= name %>_id: ID!, // TODO) {
     update<%= classify(name) %>(<%= name %>_id: $<%= name %>_id, // TODO) {
       <%= name %>_id
+      // TODO
+      <%= name %>_created_at
+      <%= name %>_updated_at
+      <%= name %>_deleted_at
     }
 }
 `;
@@ -52,6 +59,9 @@ mutation destroy<%= classify(name) %>($<%= name %>_id: ID!) {
   destroy<%= classify(name) %>(<%= name %>_id: $<%= name %>_id) {
     <%= name %>_id
     // TODO
+    <%= name %>_created_at
+    <%= name %>_updated_at
+    <%= name %>_deleted_at
   }
 }
 `;

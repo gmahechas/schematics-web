@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Store, select } from '@ngrx/store';
@@ -12,13 +12,15 @@ import { Observable } from 'rxjs';
   selector: 'app-dropdown-page-<%= name %>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dropdown-page-<%= name %>.component.html',
-  styleUrls: ['./dropdown-page-<%= name %>.component.scss']
+  styles: []
 })
 export class DropdownPage<%= classify(name) %>Component implements OnInit {
 
   @Input() group: FormGroup;
   @Input() controlName: string;
   @Input() options: string[];
+  @Input() placeholder: string;
+  @Output() changeDropdown: EventEmitter<any> = new EventEmitter<any>();
   entities$: Observable<<%= classify(name) %>[]>;
   configDropDown: any;
 
@@ -27,9 +29,8 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   ) {
     this.entities$ = store.pipe(select(fromStore.getAllEntities));
     this.configDropDown = {
-      placeholder: 'Selecciona el pais',
       dataKey: '<%= name %>_id',
-      optionLabel: 'TODO'
+      optionLabel: '<%= name %>_name'
     };
   }
 
@@ -39,9 +40,13 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   keyUp(event) {
     this.store.dispatch(new fromStore.LoadEntityShared({
       <%= name %>: {
-        <%= name %>_id: null,
-        <%= name %>_name: event, // TODO
-      }
+        // TODO
+      },
+      // TODO
     }));
+  }
+
+  handleChange(event) {
+    this.changeDropdown.emit(event);
   }
 }

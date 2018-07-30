@@ -23,6 +23,7 @@ export class <%= classify(name) %>Service {
       query: fromGraphql.pagination,
       variables: {
         ...search<%= classify(name) %>.<%= name %>,
+        ...search<%= classify(name) %>.estate,
         limit: search<%= classify(name) %>.limit,
         page: search<%= classify(name) %>.page
       }
@@ -38,8 +39,8 @@ export class <%= classify(name) %>Service {
     });
   }
 
-  update(<%= name %>: fromModels.<%= classify(name) %>): Observable<any> {
-    return this.apollo.mutate<fromModels.Update<%= classify(name) %>>({
+  update(<%= name %>: fromModels.<%= name %>): Observable<any> {
+    return this.apollo.mutate<fromModels.Update<%= name %>>({
       mutation: fromGraphql.update,
       variables: <%= name %>
     });
@@ -55,6 +56,7 @@ export class <%= classify(name) %>Service {
   }
 
   pagination(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
+    console.log(search<%= classify(name) %>);
     return this.queryRef.fetchMore({
       query: fromGraphql.pagination,
       variables: {

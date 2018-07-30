@@ -1,13 +1,28 @@
 <form [formGroup]="<%= name %>Form" (ngSubmit)="onSubmit(<%= name %>Form)">
+    <app-panel-shared>
+      <div class="panel-header">
+        <ng-content select=".form-title"></ng-content>
+      </div>
+      <div class="panel-content">
+        <div class="ui-grid">
 
-  <ng-content select="h3"></ng-content>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2"><!-- // TODO --></div>
+            <div class="ui-grid-col-6">
+              <!-- // TODO -->
+            </div>
+            <div class="ui-grid-col-4">
+              <!-- // TODO -->
+            </div>
+          </div>
 
-  <div class="ui-g">
-    <div class="ui-g-6 ui-g-nopad">
-      <!-- TODO -->
-      <br>
-      <ng-content select="button"></ng-content>
-    </div>
-  </div>
-
-</form>
+        </div>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-10 ui-g-offset-2">
+            <app-button-shared [type]="'submit'" [label]="'Guardar'" [class]="'ui-button-secondary'" [disabled]="<%= name %>Form.invalid"></app-button-shared>
+            <ng-content select="app-button-shared"></ng-content>
+          </div>
+        </div>
+      </div>
+    </app-panel-shared>
+  </form>

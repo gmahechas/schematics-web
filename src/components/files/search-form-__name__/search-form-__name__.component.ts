@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Search<%= classify(name) %> } from './../../models/search-<%= name %>.model';
 
@@ -7,7 +7,7 @@ import { Search<%= classify(name) %> } from './../../models/search-<%= name %>.m
   selector: 'app-search-form-<%= name %>',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './search-form-<%= name %>.component.html',
-  styleUrls: ['./search-form-<%= name %>.component.scss']
+  styles: []
 })
 export class SearchForm<%= classify(name) %>Component implements OnChanges, OnInit {
 
@@ -17,7 +17,6 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
 
   searchForm<%= classify(name) %>: FormGroup = this.formBuilder.group({
     <%= name %>: this.formBuilder.group({
-      <%= name %>_id: new FormControl(''),
       // TODO
     })
   });
@@ -29,7 +28,6 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
   ngOnChanges() {
     this.searchForm<%= classify(name) %>.setValue({
       <%= name %>: {
-        <%= name %>_id: this.query.<%= name %>.<%= name %>_id,
         // TODO
       }
     });
