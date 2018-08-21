@@ -1,10 +1,10 @@
 <app-form-<%= name %> *ngIf="!(<%= name %>$ | async) as <%= name %>" (submitted)="onStore($event)">
-    <div class="form-title">Agregar // TODO</div>
+    <div class="form-title">Agregar // TODO:</div>
     <app-button-shared [type]="'button'" [label]="'Cancelar'" [class]="'ui-button-secondary'" (click)="onCancel()"></app-button-shared>
   </app-form-<%= name %>>
   
   <app-form-<%= name %> *ngIf="(<%= name %>$ | async) as <%= name %>" (submitted)="onUpdate($event)" [<%= name %>]="<%= name %>">
-    <div class="form-title">Editar // TODO</div>
+    <div class="form-title">Editar // TODO:</div>
     <app-button-shared [type]="'button'" [label]="'Eliminar'" [class]="'ui-button-secondary'" (click)="onDestroy(<%= name %>)"></app-button-shared>
     <app-button-shared [type]="'button'" [label]="'Cancelar'" [class]="'ui-button-secondary'" (click)="onCancel()"></app-button-shared>
   </app-form-<%= name %>>

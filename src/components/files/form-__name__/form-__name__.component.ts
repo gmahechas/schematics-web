@@ -16,9 +16,9 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
 
   <%= name %>Form: FormGroup = this.formBuilder.group({
     <%= name %>: this.formBuilder.group({
-      // TODO
+      // TODO:
     }),
-    // TODO
+    // TODO:
   });
 
   constructor(
@@ -30,9 +30,9 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
       this.<%= name %>Form.reset();
       this.<%= name %>Form.setValue({
         <%= name %>: {
-          // TODO
+          // TODO:
         },
-        // TODO
+        // TODO:
       });
     }
   }
@@ -49,7 +49,7 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
             ...<%= name %>Form.value.<%= name %>,
             <%= name %>_id: this.<%= name %>.<%= name %>_id
           },
-          // TODO
+          // TODO:
         };
         this.submitted.emit(updated);
       }
@@ -62,4 +62,3 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
   }
 
 }
-

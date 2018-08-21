@@ -11,7 +11,7 @@ const initialState: State = {
   query: {
     <%= name %>: {
       <%= name %>_id: ''
-      // TODO
+      // TODO:
     }
   }
 };

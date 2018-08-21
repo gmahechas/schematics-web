@@ -5,7 +5,6 @@ import * as fromStore from './../../store';
 import * as fromCore from './../../../../core/store';
 
 import { <%= classify(name) %> } from './../../models/<%= name %>.model';
-import { Estate } from './../../../estate/models/estate.model';
 
 import { Observable } from 'rxjs';
 
@@ -27,12 +26,12 @@ export class FormPage<%= classify(name) %>Component implements OnInit {
   ngOnInit() {
   }
 
-  onStore({ <%= name %> }: { <%= name %>: <%= classify(name) %> }) { // TODO
-    this.store.dispatch(new fromStore.StoreEntity({...<%= name %> })); // TODO
+  onStore({ <%= name %> }: { <%= name %>: <%= classify(name) %> }) { // TODO:
+    this.store.dispatch(new fromStore.StoreEntity({...<%= name %> })); // TODO:
   }
 
-  onUpdate({ <%= name %> }: { <%= name %>: <%= classify(name) %> }) {
-    this.store.dispatch(new fromStore.UpdateEntity({...<%= name %> }));
+  onUpdate({ <%= name %> }: { <%= name %>: <%= classify(name) %> }) { // TODO:
+    this.store.dispatch(new fromStore.UpdateEntity({...<%= name %> })); // TODO:
   }
 
   onCancel() {

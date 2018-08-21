@@ -40,9 +40,9 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   keyUp(event) {
     this.store.dispatch(new fromStore.LoadEntityShared({
       <%= name %>: {
-        // TODO
+        // TODO:
       },
-      // TODO
+      // TODO:
     }));
   }
 

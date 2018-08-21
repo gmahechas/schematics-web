@@ -104,3 +104,4 @@ export type EntityActions =
   | DestroyFailEntity
   | PaginateEntity
   | LoadEntityShared;
+  

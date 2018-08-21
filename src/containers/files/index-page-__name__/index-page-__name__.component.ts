@@ -37,7 +37,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
     this.configTable = {
       dataKey: '<%= name %>_id',
       cols: [
-        // TODO
+        // TODO:
       ]
     };
   }
@@ -47,7 +47,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
     this.store.dispatch(new fromStore.LoadEntity({
       <%= name %>: <%= name %>Search.<%= name %>,
-      // TODO
+      // TODO:
       limit: 20,
       page: 1
     }));

@@ -96,7 +96,7 @@ export class Layout<%= classify(name) %>Effects {
       this.store.dispatch(new fromActions.LoadEntity({
         <%= name %>: {
           <%= name %>_id: String(data.store<%= classify(name) %>.<%= name %>_id),
-          // TODO
+          // TODO:
         }
       }));
     })
@@ -107,7 +107,7 @@ export class Layout<%= classify(name) %>Effects {
     ofType<fromActions.UpdateSuccessEntity>(fromActions.EntityActionTypes.UpdateSuccessEntity),
     map(action => action.payload),
     tap((data: fromModels.Update<%= classify(name) %>) => {
-      // TODO
+      this.store.dispatch(new fromCore.Go({ path: ['<%= name %>'] }));
     })
   );
 

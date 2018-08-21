@@ -17,7 +17,7 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
 
   searchForm<%= classify(name) %>: FormGroup = this.formBuilder.group({
     <%= name %>: this.formBuilder.group({
-      // TODO
+      // TODO:
     })
   });
 
@@ -28,7 +28,7 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
   ngOnChanges() {
     this.searchForm<%= classify(name) %>.setValue({
       <%= name %>: {
-        // TODO
+        // TODO:
       }
     });
   }
