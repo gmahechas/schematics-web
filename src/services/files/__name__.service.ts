@@ -56,7 +56,6 @@ export class <%= classify(name) %>Service {
   }
 
   pagination(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
-    console.log(search<%= classify(name) %>);
     return this.queryRef.fetchMore({
       query: fromGraphql.pagination,
       variables: {

@@ -18,7 +18,7 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
     private <%= name %>Service: <%= classify(name) %>Service
   ) { }
 
-  /* Always return 200 response */
+  /* FIXME: Always return 200 response */
   /*   hasInApi(<%= name %>_id: string) {
       return this.<%= name %>Service.pagination<%= classify(name) %>({ <%= name %>_id: +<%= name %>_id }).pipe(
         map(({ data }) => new fromStore.EntityLoadSuccess(data)),
