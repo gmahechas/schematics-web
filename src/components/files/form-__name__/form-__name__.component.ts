@@ -43,20 +43,16 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
   onSubmit(<%= name %>Form: FormGroup) {
 
     if (this.<%= name %>) {
-      if (this.<%= name %>Form.dirty && this.<%= name %>Form.valid) {
+      if (<%= name %>Form.dirty) {
         const updated = {
-          <%= name %>: {
+            <%= name %>_id: this.<%= name %>.<%= name %>_id,
             ...<%= name %>Form.value.<%= name %>,
-            <%= name %>_id: this.<%= name %>.<%= name %>_id
-          },
-          // TODO:
+            // TODO:
         };
         this.submitted.emit(updated);
       }
     } else {
-      if (this.<%= name %>Form.valid) {
-        this.submitted.emit(<%= name %>Form.value);
-      }
+      this.submitted.emit({...<%= name %>Form.value.<%= name %>}); // TODO:
     }
 
   }

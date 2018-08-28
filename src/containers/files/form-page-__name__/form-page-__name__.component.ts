@@ -26,12 +26,12 @@ export class FormPage<%= classify(name) %>Component implements OnInit {
   ngOnInit() {
   }
 
-  onStore({ <%= name %> }: { <%= name %>: <%= classify(name) %> }) { // TODO:
-    this.store.dispatch(new fromStore.StoreEntity({...<%= name %> })); // TODO:
+  onStore(<%= name %>: <%= classify(name) %>) {
+    this.store.dispatch(new fromStore.StoreEntity(<%= name %>));
   }
 
-  onUpdate({ <%= name %> }: { <%= name %>: <%= classify(name) %> }) { // TODO:
-    this.store.dispatch(new fromStore.UpdateEntity({...<%= name %> })); // TODO:
+  onUpdate(<%= name %>: <%= classify(name) %>) {
+    this.store.dispatch(new fromStore.UpdateEntity(<%= name %>));
   }
 
   onCancel() {

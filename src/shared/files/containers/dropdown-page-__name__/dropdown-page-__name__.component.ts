@@ -30,7 +30,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
     this.entities$ = store.pipe(select(fromStore.getAllEntities));
     this.configDropDown = {
       dataKey: '<%= name %>_id',
-      optionLabel: '<%= name %>_name'
+      optionLabel: '<%= name %>_id'
     };
   }
 
