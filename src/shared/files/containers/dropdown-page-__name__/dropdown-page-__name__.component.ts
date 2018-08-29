@@ -20,6 +20,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   @Input() controlName: string;
   @Input() options: string[];
   @Input() placeholder: string;
+  @Input() filterPlaceholder: string;
   @Output() changeDropdown: EventEmitter<any> = new EventEmitter<any>();
   entities$: Observable<<%= classify(name) %>[]>;
   configDropDown: any;
@@ -30,7 +31,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
     this.entities$ = store.pipe(select(fromStore.getAllEntities));
     this.configDropDown = {
       dataKey: '<%= name %>_id',
-      optionLabel: '<%= name %>_id'
+      optionLabel: '<%= name %>_id' // TODO:
     };
   }
 
