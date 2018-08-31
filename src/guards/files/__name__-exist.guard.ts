@@ -18,22 +18,6 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
     private <%= name %>Service: <%= classify(name) %>Service
   ) { }
 
-  /* FIXME: Always return 200 response */
-  /*   hasInApi(<%= name %>_id: string) {
-      return this.<%= name %>Service.pagination<%= classify(name) %>({ <%= name %>_id: +<%= name %>_id }).pipe(
-        map(({ data }) => new fromStore.EntityLoadSuccess(data)),
-        tap((action: fromStore.EntityLoadSuccess) => this.store.dispatch(action)),
-        map(action => action.payload),
-        map(search<%= classify(name) %> => !!search<%= classify(name) %>),
-        catchError(() => {
-          this.store.dispatch(new fromCore.Go({
-            path: ['not-found']
-          }));
-          return of(false);
-        })
-      );
-    } */
-
   hasInStore(<%= name %>_id: string): Observable<boolean> {
     return this.store.pipe(
       select(fromStore.getEntities),
@@ -48,7 +32,6 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
         if (inStore) {
           return of(inStore);
         }
-        /* this.hasInApi(<%= name %>_id); */
         this.store.dispatch(new fromCore.Go({
           path: ['not-found']
         }));
