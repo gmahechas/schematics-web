@@ -6,8 +6,6 @@ import * as fromCore from './../../../../core/store';
 
 import { <%= classify(name) %> } from './../../models/<%= name %>.model';
 
-import { Observable } from 'rxjs';
-
 @Component({
   selector: 'app-form-page-<%= name %>',
   templateUrl: './form-page-<%= name %>.component.html',
@@ -15,13 +13,11 @@ import { Observable } from 'rxjs';
 })
 export class FormPage<%= classify(name) %>Component implements OnInit {
 
-  <%= name %>$: Observable<<%= classify(name) %>>;
+  <%= name %>$ = this.store.pipe(select(fromStore.getSelectedByRouter));
 
   constructor(
     private store: Store<fromStore.State>
-  ) {
-    this.<%= name %>$ = store.pipe(select(fromStore.getSelectedByRouter));
-  }
+  ) { }
 
   ngOnInit() {
   }
