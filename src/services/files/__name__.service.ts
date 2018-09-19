@@ -5,8 +5,6 @@ import * as fromGraphql from './../graphql/<%= name %>.graphql';
 
 import * as fromModels from './../models';
 
-import { Observable } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -32,21 +30,21 @@ export class <%= classify(name) %>Service {
     return this.queryRef.valueChanges;
   }
 
-  store(<%= name %>: fromModels.<%= classify(name) %>): Observable<any> {
+  store(<%= name %>: fromModels.<%= classify(name) %>) {
     return this.apollo.mutate<fromModels.Store<%= classify(name) %>>({
       mutation: fromGraphql.store,
       variables: <%= name %>
     });
   }
 
-  update(<%= name %>: fromModels.<%= classify(name) %>): Observable<any> {
+  update(<%= name %>: fromModels.<%= classify(name) %>) {
     return this.apollo.mutate<fromModels.Update<%= classify(name) %>>({
       mutation: fromGraphql.update,
       variables: <%= name %>
     });
   }
 
-  destroy(<%= name %>: fromModels.<%= classify(name) %>): Observable<any> {
+  destroy(<%= name %>: fromModels.<%= classify(name) %>) {
     return this.apollo.mutate<fromModels.Destroy<%= classify(name) %>>({
       mutation: fromGraphql.destroy,
       variables: {

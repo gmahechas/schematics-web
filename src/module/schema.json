@@ -5,7 +5,8 @@
   "type": "object",
   "properties": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "This is name of the class"
     }
   },
   "required": [
