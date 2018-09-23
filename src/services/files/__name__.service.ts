@@ -43,7 +43,7 @@ export class <%= classify(name) %>Service {
       // TODO:
       limit: search<%= classify(name) %>.limit,
       page: search<%= classify(name) %>.page
-    },);
+    });
   }
 
 }
