@@ -24,4 +24,4 @@ export interface State extends fromCore.State {
   <%= name %>: <%= classify(name) %>State;
 }
 
-export const get<%= classify(name) %>State = createFeatureSelector<<%= classify(name) %>State>('<%= name %>');
+export const get<%= classify(name) %>State = createFeatureSelector<State, <%= classify(name) %>State>('<%= name %>');
