@@ -4,10 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import * as fromStore from '../../../store';
 
-import { <%= classify(name) %> } from './../../../models/<%= name %>.model';
-
-import { Observable } from 'rxjs';
-
 @Component({
   selector: 'app-dropdown-page-<%= name %>',
   changeDetection: ChangeDetectionStrategy.OnPush,
