@@ -23,17 +23,12 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   @Input() placeholder: string;
   @Input() filterPlaceholder: string;
   @Output() changeDropdown: EventEmitter<any> = new EventEmitter<any>();
-  entities$: Observable<<%= classify(name) %>[]>;
-  configDropDown: any;
+  entities$ = this.store.pipe(select(fromStore.getAllEntities));
+  entityId = '<%= name %>_id'
 
   constructor(
     private store: Store<fromStore.State>
-  ) {
-    this.entities$ = store.pipe(select(fromStore.getAllEntities));
-    this.configDropDown = {
-      dataKey: '<%= name %>_id'
-    };
-  }
+  ) { }
 
   ngOnInit() {
   }
