@@ -84,11 +84,13 @@ export class Layout<%= classify(name) %>Effects {
   storeSuccessEntity$ = this.actions$.pipe(
     ofType<fromActions.StoreSuccessEntity>(fromActions.EntityActionTypes.StoreSuccessEntity),
     map(action => action.payload),
-    tap((data: fromModels.Store<%= classify(name) %>) => {
+    tap((data: { entity: fromModels.Store<%= classify(name) %> }) => {
       this.store.dispatch(new fromActions.LoadEntity({
-        <%= name %>: {
-          <%= name %>_id: String(data.store<%= classify(name) %>.<%= name %>_id),
-          // TODO:
+        search: {
+          <%= name %>: {
+            <%= name %>_id: String(data.entity.store<%= classify(name) %>.<%= name %>_id),
+            // TODO:
+          }
         }
       }));
     })
@@ -98,7 +100,7 @@ export class Layout<%= classify(name) %>Effects {
   updateSuccessEntity$ = this.actions$.pipe(
     ofType<fromActions.UpdateSuccessEntity>(fromActions.EntityActionTypes.UpdateSuccessEntity),
     map(action => action.payload),
-    tap((data: fromModels.Update<%= classify(name) %>) => {
+    tap((data: { entity: fromModels.Update<%= classify(name) %> }) => {
       this.store.dispatch(new fromCore.Go({ path: ['<%= name %>'] }));
     })
   );
@@ -107,7 +109,7 @@ export class Layout<%= classify(name) %>Effects {
   destroySuccessEntity$ = this.actions$.pipe(
     ofType<fromActions.DestroySuccessEntity>(fromActions.EntityActionTypes.DestroySuccessEntity),
     map(action => action.payload),
-    tap((data: fromModels.Destroy<%= classify(name) %>) => {
+    tap((data: { entity: fromModels.Destroy<%= classify(name) %> }) => {
       this.store.dispatch(new fromCore.Go({ path: ['<%= name %>'] }));
     })
   );

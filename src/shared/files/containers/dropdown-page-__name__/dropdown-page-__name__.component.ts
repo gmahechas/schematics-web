@@ -31,10 +31,12 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
 
   keyUp(event) {
     this.store.dispatch(new fromStore.LoadEntityShared({
-      <%= name %>: {
+      search: {
+        <%= name %>: {
+          // TODO:
+        },
         // TODO:
-      },
-      // TODO:
+      }
     }));
   }
 

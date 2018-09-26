@@ -23,11 +23,11 @@ export class FormPage<%= classify(name) %>Component implements OnInit {
   }
 
   onStore(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new fromStore.StoreEntity(<%= name %>));
+    this.store.dispatch(new fromStore.StoreEntity({ entity: <%= name %> }));
   }
 
   onUpdate(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new fromStore.UpdateEntity(<%= name %>));
+    this.store.dispatch(new fromStore.UpdateEntity({ entity: <%= name %> }));
   }
 
   onCancel() {
@@ -37,6 +37,6 @@ export class FormPage<%= classify(name) %>Component implements OnInit {
   }
 
   onDestroy(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new fromStore.DestroyEntity(<%= name %>));
+    this.store.dispatch(new fromStore.DestroyEntity({ entity: <%= name %> }));
   }
 }

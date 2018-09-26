@@ -38,10 +38,12 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
 
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
     this.store.dispatch(new fromStore.LoadEntity({
-      <%= name %>: <%= name %>Search.<%= name %>,
-      // TODO:
-      limit: 20,
-      page: 1
+      search: {
+        <%= name %>: <%= name %>Search.<%= name %>,
+        // TODO:
+        limit: 20,
+        page: 1
+      }
     }));
   }
 
@@ -58,7 +60,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   }
 
   onPaginate(event) {
-    this.store.dispatch(new fromStore.PaginateEntity(event.page + 1));
+    this.store.dispatch(new fromStore.PaginateEntity({ page: event.page + 1 }));
   }
 
   onCancel() {

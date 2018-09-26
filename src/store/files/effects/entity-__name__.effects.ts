@@ -24,13 +24,13 @@ export class Entity<%= classify(name) %>Effects {
       this.store.pipe(select(fromSelectors.getPerPage)),
       this.store.pipe(select(fromSelectors.getCurrentPage))
     ),
-    switchMap(([search<%= classify(name) %>, perPage, currentPage]: [fromModels.Search<%= classify(name) %>, number, number]) => {
-      perPage = (perPage) ? perPage : search<%= classify(name) %>.limit;
-      currentPage = (currentPage) ? currentPage : search<%= classify(name) %>.page;
-      return this.<%= name %>Service.load({ ...search<%= classify(name) %>, limit: perPage, page: currentPage }).pipe(
-        map(({ data }) => new fromActions.LoadSuccessEntity(data)),
+    switchMap(([{ search }, perPage, currentPage]: [{ search: fromModels.Search<%= classify(name) %>}, number, number]) => {
+      perPage = (perPage) ? perPage : search.limit;
+      currentPage = (currentPage) ? currentPage : search.page;
+      return this.<%= name %>Service.load({ ...search, limit: perPage, page: currentPage }).pipe(
+        map(({ data }) => new fromActions.LoadSuccessEntity({ entities: data })),
         catchError((errors) => {
-          return of(new fromActions.LoadFailEntity(errors));
+          return of(new fromActions.LoadFailEntity({ error: errors }));
         })
       );
     })
@@ -40,10 +40,10 @@ export class Entity<%= classify(name) %>Effects {
   storeEntity$ = this.actions$.pipe(
     ofType<fromActions.StoreEntity>(fromActions.EntityActionTypes.StoreEntity),
     map(action => action.payload),
-    switchMap((<%= name %>: fromModels.<%= classify(name) %>) => {
-      return this.<%= name %>Service.store(<%= name %>).pipe(
-        map(({ data }) => new fromActions.StoreSuccessEntity(data)),
-        catchError((errors) => of(new fromActions.StoreFailEntity(errors)))
+    switchMap(({ entity }: { entity: fromModels.<%= classify(name) %>}) => {
+      return this.<%= name %>Service.store(entity).pipe(
+        map(({ data }) => new fromActions.StoreSuccessEntity({ entity: data })),
+        catchError((errors) => of(new fromActions.StoreFailEntity({ error: errors })))
       );
     })
   );
@@ -52,10 +52,10 @@ export class Entity<%= classify(name) %>Effects {
   updateEntity$ = this.actions$.pipe(
     ofType<fromActions.UpdateEntity>(fromActions.EntityActionTypes.UpdateEntity),
     map(action => action.payload),
-    switchMap((<%= name %>: fromModels.<%= classify(name) %>) => {
-      return this.<%= name %>Service.update(<%= name %>).pipe(
-        map(({ data }) => new fromActions.UpdateSuccessEntity(data)),
-        catchError((errors) => of(new fromActions.UpdateFailEntity(errors)))
+    switchMap(({ entity }: { entity: fromModels.<%= classify(name) %>}) => {
+      return this.<%= name %>Service.update(entity).pipe(
+        map(({ data }) => new fromActions.UpdateSuccessEntity({ entity: data })),
+        catchError((errors) => of(new fromActions.UpdateFailEntity({ error: errors })))
       );
     })
   );
@@ -64,10 +64,10 @@ export class Entity<%= classify(name) %>Effects {
   destroyEntity$ = this.actions$.pipe(
     ofType<fromActions.DestroyEntity>(fromActions.EntityActionTypes.DestroyEntity),
     map(action => action.payload),
-    switchMap((<%= name %>: fromModels.<%= classify(name) %>) => {
-      return this.<%= name %>Service.destroy(<%= name %>).pipe(
-        map(({ data }) => new fromActions.DestroySuccessEntity(data)),
-        catchError((errors) => of(new fromActions.DestroyFailEntity(errors)))
+    switchMap(({ entity }: { entity: fromModels.<%= classify(name) %>}) => {
+      return this.<%= name %>Service.destroy(entity).pipe(
+        map(({ data }) => new fromActions.DestroySuccessEntity({ entity: data })),
+        catchError((errors) => of(new fromActions.DestroyFailEntity({ error: errors })))
       );
     })
   );
@@ -80,10 +80,10 @@ export class Entity<%= classify(name) %>Effects {
       this.store.pipe(select(fromSelectors.getPerPage)),
       this.store.pipe(select(fromSelectors.getQuery))
     ),
-    switchMap(([currentPage, perPage, search<%= classify(name) %>]: [number, number, fromModels.Search<%= classify(name) %>]) => {
-      return from(this.<%= name %>Service.pagination({ ...search<%= classify(name) %>, limit: perPage, page: currentPage })).pipe(
-        map(({ data }) => new fromActions.LoadSuccessEntity(data)),
-        catchError((errors) => of(new fromActions.LoadFailEntity(errors)))
+    switchMap(([{ page }, perPage, search<%= classify(name) %>]: [{ page: number }, number, fromModels.Search<%= classify(name) %>]) => {
+      return from(this.<%= name %>Service.pagination({ ...search<%= classify(name) %>, limit: perPage, page: page })).pipe(
+        map(({ data }) => new fromActions.LoadSuccessEntity({ entities: data })),
+        catchError((errors) => of(new fromActions.LoadFailEntity({ error: errors })))
       );
     })
   );
@@ -93,8 +93,8 @@ export class Entity<%= classify(name) %>Effects {
     this.actions$.pipe(
       ofType<fromActions.LoadEntityShared>(fromActions.EntityActionTypes.LoadEntityShared),
       debounceTime(debounce, scheduler),
-      switchMap((search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) => {
-        if (search<%= classify(name) %> === '') {
+      switchMap(({ search }: { search: fromModels.Search<%= classify(name) %> }) => {
+        if (search === '') {
           return EMPTY;
         }
 
@@ -103,11 +103,11 @@ export class Entity<%= classify(name) %>Effects {
           skip(1)
         );
 
-        return this.<%= name %>Service.load({ ...search<%= classify(name) %>, limit: 20, page: 1 }).pipe(
+        return this.<%= name %>Service.load({ ...search, limit: 20, page: 1 }).pipe(
           takeUntil(nextSearch$),
-          map(({ data }) => new fromActions.LoadSuccessEntity(data)),
+          map(({ data }) => new fromActions.LoadSuccessEntity({ entities: data })),
           catchError((errors) => {
-            return of(new fromActions.LoadFailEntity(errors));
+            return of(new fromActions.LoadFailEntity({ error: errors }));
           })
         );
 
