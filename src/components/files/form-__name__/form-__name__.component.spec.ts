@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormPage<%= classify(name) %>Component } from './form-page-<%= name %>.component';
+import { Form<%= classify(name) %>Component } from './form-<%= name %>.component';
 
-describe('FormPage<%= classify(name) %>Component', () => {
-  let component: FormPage<%= classify(name) %>Component;
-  let fixture: ComponentFixture<FormPage<%= classify(name) %>Component>;
+describe('Form<%= classify(name) %>Component', () => {
+  let component: Form<%= classify(name) %>Component;
+  let fixture: ComponentFixture<Form<%= classify(name) %>Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormPage<%= classify(name) %>Component ]
+      declarations: [ Form<%= classify(name) %>Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormPage<%= classify(name) %>Component);
+    fixture = TestBed.createComponent(Form<%= classify(name) %>Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -14,6 +14,7 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
   @Input() query: Search<%= classify(name) %>;
   @Output() search: EventEmitter<Search<%= classify(name) %>> = new EventEmitter<Search<%= classify(name) %>>();
   @Output() create: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() resetSearch: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   searchForm<%= classify(name) %>: FormGroup = this.formBuilder.group({
     <%= name %>: this.formBuilder.group({
@@ -42,5 +43,9 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
 
   onCreate() {
     this.create.emit(true);
+  }
+
+  onReset() {
+    this.resetSearch.emit(true);
   }
 }

@@ -26,7 +26,8 @@ export function reducer(state = initialState, action: EntityActions): State {
     }
 
     case EntityActionTypes.StoreSuccessEntity: {
-      return adapter.addOne(action.payload.entity.store<%= classify(name) %>, state);
+      const newState = adapter.removeAll(state);
+      return adapter.addOne(action.payload.entity.store<%= classify(name) %>, newState);
     }
 
     case EntityActionTypes.UpdateSuccessEntity: {
@@ -42,6 +43,10 @@ export function reducer(state = initialState, action: EntityActions): State {
       return adapter.removeOne(action.payload.entity.destroy<%= classify(name) %>.<%= name %>_id, state);
     }
 
+    case EntityActionTypes.ResetSearch: {
+      return adapter.removeAll(state);
+    }
+    
     default:
       return state;
   }

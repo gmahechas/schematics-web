@@ -16,7 +16,8 @@ export enum EntityActionTypes {
   DestroySuccessEntity = '[<%= classify(name) %>] Destroy Success Entity',
   DestroyFailEntity = '[<%= classify(name) %>] Destroy Fail Entity',
   PaginateEntity = '[<%= classify(name) %>] Paginate Entity',
-  LoadEntityShared = '[<%= classify(name) %>] Load Entity Shared'
+  LoadEntityShared = '[<%= classify(name) %>] Load Entity Shared',
+  ResetSearch = '[<%= classify(name) %>] Reset Search'
 }
 
 export class LoadEntity implements Action {
@@ -89,6 +90,10 @@ export class LoadEntityShared implements Action {
   constructor(public payload: { search: fromModels.Search<%= classify(name) %> }) { }
 }
 
+export class ResetSearch implements Action {
+  readonly type = EntityActionTypes.ResetSearch;
+}
+
 export type EntityActions =
   | LoadEntity
   | LoadSuccessEntity
@@ -103,4 +108,5 @@ export type EntityActions =
   | DestroySuccessEntity
   | DestroyFailEntity
   | PaginateEntity
-  | LoadEntityShared;
+  | LoadEntityShared
+  | ResetSearch;

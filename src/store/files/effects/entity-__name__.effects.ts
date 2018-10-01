@@ -95,7 +95,9 @@ export class Entity<%= classify(name) %>Effects {
       debounceTime(debounce, scheduler),
       map(action => action.payload.search),
       switchMap((search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) => {
-        if (search<%= classify(name) %> === '') {
+        if (
+          search<%= classify(name) %> === '' // TODO:
+          ) {
           return EMPTY;
         }
 

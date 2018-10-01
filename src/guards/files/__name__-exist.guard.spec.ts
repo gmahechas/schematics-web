@@ -1,15 +1,15 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
-import { <%= classify(name) %>Guard } from './<%= name %>.guard';
+import { <%= classify(name) %>ExistGuard } from './<%= name %>-exist.guard';
 
-describe('<%= classify(name) %>Guard', () => {
+describe('<%= classify(name) %>ExistGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [<%= classify(name) %>Guard]
+      providers: [<%= classify(name) %>ExistGuard]
     });
   });
 
-  it('should ...', inject([<%= classify(name) %>Guard], (guard: <%= classify(name) %>Guard) => {
+  it('should ...', inject([<%= classify(name) %>ExistGuard], (guard: <%= classify(name) %>ExistGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

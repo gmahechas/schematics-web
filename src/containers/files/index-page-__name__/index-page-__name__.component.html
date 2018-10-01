@@ -3,7 +3,7 @@
       <app-panel-shared>
         <div class="panel-header">Buscar // TODO:</div>
         <div class="panel-content">
-          <app-search-form-<%= name %> [query]="query$ | async" (search)="onLoad($event)" (create)="onCreate()"></app-search-form-<%= name %>>
+          <app-search-form-<%= name %> [query]="query$ | async" (search)="onLoad($event)" (create)="onCreate()" (resetSearch)="onResetSearch()"></app-search-form-<%= name %>>
         </div>
       </app-panel-shared>
     </div>

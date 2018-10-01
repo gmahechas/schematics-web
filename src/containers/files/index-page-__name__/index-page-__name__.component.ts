@@ -69,4 +69,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
     }));
   }
 
+  onResetSearch() {
+    this.store.dispatch(new fromStore.ResetSearch());
+  }
 }
