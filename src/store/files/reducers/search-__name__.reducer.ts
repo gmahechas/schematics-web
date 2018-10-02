@@ -6,7 +6,7 @@ export interface State {
   query: Search<%= classify(name) %>;
 }
 
-const initialState: State = {
+export const initialState: State = {
   loaded: false,
   query: {
     <%= name %>: {
