@@ -45,6 +45,11 @@
       "description": "A blank schematic.",
       "factory": "./shared",
       "schema": "./shared/schema.json"
+    },
+    "testing": {
+      "description": "A blank schematic.",
+      "factory": "./testing",
+      "schema": "./testing/schema.json"
     }
   }
 }

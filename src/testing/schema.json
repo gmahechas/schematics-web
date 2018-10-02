@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "MavatecTesting",
+  "title": "Mavatec Testing",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default": []
+    }
+  },
+  "required": [
+    "name",
+    "module"
+  ]
+}
