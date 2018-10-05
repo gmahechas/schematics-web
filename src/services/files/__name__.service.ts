@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import * as fromGraphql from './../graphql';
+import * as fromGraphql from '@web/app/<%= path %>/<%= name %>/graphql';
 
-import * as fromModels from './../models';
+import * as fromModels from '@web/app/<%= path %>/<%= name %>/models';
 
 @Injectable({
   providedIn: 'root'

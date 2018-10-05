@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import * as fromStore from './../../store';
-import * as fromCore from './../../../../core/store';
+import * as fromStore from '@web/app/<%= path %>/<%= name %>/store';
+import * as fromCore from '@web/app/core/store';
 
-import { <%= classify(name) %> } from './../../models/<%= name %>.model';
-import { Search<%= classify(name) %> } from './../../models/search-<%= name %>.model';
+import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
+import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/search-<%= name %>.model';
 
 @Component({
   selector: 'app-index-page-<%= name %>',

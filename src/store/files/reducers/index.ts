@@ -1,10 +1,10 @@
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
-import * as fromEntity from './entity-<%= name %>.reducer';
-import * as fromSearch from './search-<%= name %>.reducer';
-import * as fromPagination from './pagination-<%= name %>.reducer';
-import * as fromLayout from './layout-<%= name %>.reducer';
-import * as fromCore from '../../../../core/store';
+import * as fromEntity from '@web/app/<%= path %>/<%= name %>/store/reducers/entity-<%= name %>.reducer';
+import * as fromSearch from '@web/app/<%= path %>/<%= name %>/store/reducers/search-<%= name %>.reducer';
+import * as fromPagination from '@web/app/<%= path %>/<%= name %>/store/reducers/pagination-<%= name %>.reducer';
+import * as fromLayout from '@web/app/<%= path %>/<%= name %>/store/reducers/layout-<%= name %>.reducer';
+import * as fromCore from '@web/app/core/store';
 
 export interface <%= classify(name) %>State {
   entity: fromEntity.State;

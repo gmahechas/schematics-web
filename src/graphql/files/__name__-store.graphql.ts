@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Store<%= classify(name) %> } from '../models/store-<%= name %>.model';
+import { Store<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/store-<%= name %>.model';
 
 import { Mutation } from 'apollo-angular';
 import { DocumentNode } from 'graphql';

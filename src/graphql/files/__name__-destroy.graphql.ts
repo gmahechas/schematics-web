@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Destroy<%= classify(name) %> } from '../models/destroy-<%= name %>.model';
+import { Destroy<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/destroy-<%= name %>.model';
 
 import { Mutation } from 'apollo-angular';
 import { DocumentNode } from 'graphql';

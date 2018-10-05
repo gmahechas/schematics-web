@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Pagination<%= classify(name) %> } from '../models/pagination-<%= name %>.model';
+import { Pagination<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/pagination-<%= name %>.model';
 
 import { Query } from 'apollo-angular';
 import { DocumentNode } from 'graphql';

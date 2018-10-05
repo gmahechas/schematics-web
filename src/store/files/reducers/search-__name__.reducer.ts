@@ -1,5 +1,5 @@
-import { EntityActionTypes, EntityActions } from '../actions/entity-<%= name %>.actions';
-import { Search<%= classify(name) %> } from '../../models/search-<%= name %>.model';
+import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= name %>/store/actions/entity-<%= name %>.actions';
+import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/search-<%= name %>.model';
 
 export interface State {
   loaded: boolean;

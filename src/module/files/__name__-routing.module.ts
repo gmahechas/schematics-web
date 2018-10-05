@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import * as fromContainers from './containers';
-import { <%= classify(name) %>ExistGuard } from './guards/<%= name %>-exist.guard';
+import * as fromContainers from '@web/app/<%= path %>/<%= name %>/containers';
+import { <%= classify(name) %>ExistGuard } from '@web/app/<%= path %>/<%= name %>/guards/<%= name %>-exist.guard';
 
 export const routes: Routes = [
   {

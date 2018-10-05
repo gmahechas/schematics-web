@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import * as fromStore from './../../store';
-import * as fromCore from './../../../../core/store';
+import * as fromStore from '@web/app/<%= path %>/<%= name %>/store';
+import * as fromCore from '@web/app/core/store';
 
-import { <%= classify(name) %> } from './../../models/<%= name %>.model';
+import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
 
 @Component({
   selector: 'app-form-page-<%= name %>',

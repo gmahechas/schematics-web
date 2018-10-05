@@ -1,6 +1,6 @@
-export * from './<%= name  %>.model';
-export * from './search-<%= name  %>.model';
-export * from './pagination-<%= name  %>.model';
-export * from './store-<%= name  %>.model';
-export * from './update-<%= name  %>.model';
-export * from './destroy-<%= name  %>.model';
+export * from '@web/app/<%= path %>/<%= name %>/models/<%= name  %>.model';
+export * from '@web/app/<%= path %>/<%= name %>/models/search-<%= name  %>.model';
+export * from '@web/app/<%= path %>/<%= name %>/models/pagination-<%= name  %>.model';
+export * from '@web/app/<%= path %>/<%= name %>/models/store-<%= name  %>.model';
+export * from '@web/app/<%= path %>/<%= name %>/models/update-<%= name  %>.model';
+export * from '@web/app/<%= path %>/<%= name %>/models/destroy-<%= name  %>.model';

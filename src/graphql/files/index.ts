@@ -1,4 +1,4 @@
-export * from './<%= name %>-pagination.graphql';
-export * from './<%= name %>-store.graphql';
-export * from './<%= name %>-update.graphql';
-export * from './<%= name %>-destroy.graphql';
+export * from '@web/app/<%= path %>/<%= name %>/graphql/<%= name %>-pagination.graphql';
+export * from '@web/app/<%= path %>/<%= name %>/graphql/<%= name %>-store.graphql';
+export * from '@web/app/<%= path %>/<%= name %>/graphql/<%= name %>-update.graphql';
+export * from '@web/app/<%= path %>/<%= name %>/graphql/<%= name %>-destroy.graphql';

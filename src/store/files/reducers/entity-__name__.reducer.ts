@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { <%= classify(name) %> } from './../../models/<%= name %>.model';
-import { EntityActionTypes, EntityActions } from '../actions/entity-<%= name %>.actions';
+import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
+import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= name %>/store/actions/entity-<%= name %>.actions';
 
 export interface State extends EntityState<<%= classify(name) %>> {
 

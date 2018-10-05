@@ -1,1 +1,1 @@
-export * from './entity-<%= name %>.actions';
+export * from '@web/app/<%= path %>/<%= name %>/store/actions/entity-<%= name %>.actions';
