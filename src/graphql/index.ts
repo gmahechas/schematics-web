@@ -10,7 +10,7 @@ export default function (options: any): Rule {
     },
     mergeWith(apply(url('./files'), [
       template({...stringUtils, ...options }),
-      move(options.name + '/graphql')
+      move(options.path + '/' + options.name + '/graphql')
     ]))
   ]);
 }

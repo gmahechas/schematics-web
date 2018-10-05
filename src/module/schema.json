@@ -4,12 +4,16 @@
   "title": "Mavatec Module",
   "type": "object",
   "properties": {
+    "path": {
+      "type": "string"
+    },
     "name": {
       "type": "string",
       "description": "This is name of the class"
     }
   },
   "required": [
+    "path",
     "name"
   ]
 }

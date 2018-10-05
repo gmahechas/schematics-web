@@ -9,7 +9,7 @@ import { <%= classify(name) %>RoutingModule } from './<%= name %>-routing.module
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
-import * as fromSharedContainers from './shared/containers';
+import * as fromShared from './shared';
 
 @NgModule({
   imports: [
@@ -21,10 +21,10 @@ import * as fromSharedContainers from './shared/containers';
   declarations: [
     ...fromContainers.containers,
     ...fromComponents.components,
-    ...fromSharedContainers.containers
+    ...fromShared.shared
   ],
   exports: [
-    ...fromSharedContainers.containers
+    ...fromShared.shared
   ]
 })
 export class <%= classify(name) %>Module { }

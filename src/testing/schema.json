@@ -4,10 +4,10 @@
   "title": "Mavatec Testing",
   "type": "object",
   "properties": {
-    "name": {
+    "path": {
       "type": "string"
     },
-    "module": {
+    "name": {
       "type": "string"
     },
     "fields": {
@@ -20,7 +20,7 @@
     }
   },
   "required": [
-    "name",
-    "module"
+    "path",
+    "name"
   ]
 }

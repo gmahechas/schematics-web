@@ -50,11 +50,6 @@
       "description": "A blank schematic.",
       "factory": "./testing",
       "schema": "./testing/schema.json"
-    },
-    "testing-store": {
-      "description": "A blank schematic.",
-      "factory": "./testing-store",
-      "schema": "./testing-store/schema.json"
     }
   }
 }
