@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { SearchForm<%= classify(name) %>Component } from './search-form-<%= name %>.component';
+import { SharedModule } from '@web/app/shared/shared.module';
+
+import { SearchForm<%= classify(name) %>Component } from '@web/app/<%= path %>/<%= name %>/components/search-form-<%= name %>/search-form-<%= name %>.component';
 
 describe('SearchForm<%= classify(name) %>Component', () => {
   let component: SearchForm<%= classify(name) %>Component;
@@ -8,9 +11,10 @@ describe('SearchForm<%= classify(name) %>Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchForm<%= classify(name) %>Component ]
+      imports: [NoopAnimationsModule, SharedModule],
+      declarations: [SearchForm<%= classify(name) %>Component]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

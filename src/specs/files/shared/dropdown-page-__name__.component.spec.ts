@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DropdownPage<%= classify(name) %>Component } from './dropdown-page-<%= name %>.component';
+import { DropdownPage<%= classify(name) %>Component } from '@web/app/<%= path %>/<%= name %>/shared/dropdown-page-<%= name %>/dropdown-page-<%= name %>.component';
 
 describe('DropdownPage<%= classify(name) %>Component', () => {
   let component: DropdownPage<%= classify(name) %>Component;

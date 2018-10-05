@@ -6,11 +6,11 @@ const stringUtils = {classify};
 export default function (options: any): Rule {
   return chain([
     (_tree: Tree, context: SchematicContext) => {
-      context.logger.info('Testing Schematic: ' + JSON.stringify(options));
+      context.logger.info('Specs Schematic: ' + JSON.stringify(options));
     },
     mergeWith(apply(url('./files'), [
       template({...stringUtils, ...options }),
-      move(options.path + '/' + options.name)
+      move('src/specs/' + options.path + '/' + options.name)
     ]))
   ]);
 }

@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { Entity<%= classify(name) %>Effects } from './entity-<%= name %>.effects';
+import { Entity<%= classify(name) %>Effects } from '@web/app/<%= path %>/<%= name %>/store/effects/entity-<%= name %>.effects';
 
 describe('Entity<%= classify(name) %>Effects', () => {
   let actions$: Observable<any>;

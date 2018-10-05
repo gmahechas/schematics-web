@@ -46,10 +46,10 @@
       "factory": "./shared",
       "schema": "./shared/schema.json"
     },
-    "testing": {
+    "specs": {
       "description": "A blank schematic.",
-      "factory": "./testing",
-      "schema": "./testing/schema.json"
+      "factory": "./specs",
+      "schema": "./specs/schema.json"
     }
   }
 }

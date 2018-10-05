@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { <%= classify(name) %>Service } from './<%= name %>.service';
+import { <%= classify(name) %>Service } from '@web/app/<%= path %>/<%= name %>/services/<%= name %>.service';
 
 describe('<%= classify(name) %>Service', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

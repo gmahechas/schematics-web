@@ -1,6 +1,6 @@
-import { reducer, initialState } from './search-<%= name %>.reducer';
+import { reducer, initialState } from '@web/app/<%= path %>/<%= name %>/store/reducers/pagination-<%= name %>.reducer';
 
-describe('Search<%= classify(name) %> Reducer', () => {
+describe('Pagination<%= classify(name) %> Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;

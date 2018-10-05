@@ -1,6 +1,6 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
-import { <%= classify(name) %>ExistGuard } from './<%= name %>-exist.guard';
+import { <%= classify(name) %>ExistGuard } from '@web/app/<%= path %>/<%= name %>/guards/<%= name %>-exist.guard';
 
 describe('<%= classify(name) %>ExistGuard', () => {
   beforeEach(() => {

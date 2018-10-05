@@ -1,4 +1,4 @@
-import { <%= classify(name) %>Module } from './<%= name %>.module';
+import { <%= classify(name) %>Module } from '@web/app/<%= path %>/<%= name %>/<%= name %>.module';
 
 describe('<%= classify(name) %>Module', () => {
   let <%= name %>Module: <%= classify(name) %>Module;

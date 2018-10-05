@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IndexPage<%= classify(name) %>Component } from './index-page-<%= name %>.component';
+import { IndexPage<%= classify(name) %>Component } from '@web/app/<%= path %>/<%= name %>/containers/index-page-<%= name %>/index-page-<%= name %>.component';
 
 describe('IndexPage<%= classify(name) %>Component', () => {
   let component: IndexPage<%= classify(name) %>Component;

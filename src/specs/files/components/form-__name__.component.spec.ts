@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Form<%= classify(name) %>Component } from './form-<%= name %>.component';
+import { SharedModule } from '@web/app/shared/shared.module';
+
+import { Form<%= classify(name) %>Component } from '@web/app/<%= path %>/<%= name %>/components/form-<%= name %>/form-<%= name %>.component';
 
 describe('Form<%= classify(name) %>Component', () => {
   let component: Form<%= classify(name) %>Component;
@@ -8,9 +11,10 @@ describe('Form<%= classify(name) %>Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Form<%= classify(name) %>Component ]
+      imports: [NoopAnimationsModule, SharedModule],
+      declarations: [Form<%= classify(name) %>Component]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

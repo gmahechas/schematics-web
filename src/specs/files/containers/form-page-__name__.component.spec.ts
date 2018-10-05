@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormPage<%= classify(name) %>Component } from './form-page-<%= name %>.component';
+import { FormPage<%= classify(name) %>Component } from '@web/app/<%= path %>/<%= name %>/containers/form-page-<%= name %>/form-page-<%= name %>.component';
 
 describe('FormPage<%= classify(name) %>Component', () => {
   let component: FormPage<%= classify(name) %>Component;
