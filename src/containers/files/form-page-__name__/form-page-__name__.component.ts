@@ -13,6 +13,7 @@ import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<
 })
 export class FormPage<%= classify(name) %>Component implements OnInit {
 
+  pending$ = this.store.pipe(select(fromStore.getPending));
   <%= name %>$ = this.store.pipe(select(fromStore.getSelectedByRouter));
 
   constructor(

@@ -11,6 +11,14 @@ import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<
 })
 export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
 
+  @Input()
+  set pending(isPending: boolean) {
+    if (isPending) {
+      this.<%= name %>Form.disable();
+    } else {
+      this.<%= name %>Form.enable();
+    }
+  }
   @Input() <%= name %>: <%= classify(name) %>;
   @Output() submitted: EventEmitter<<%= classify(name) %>> = new EventEmitter<<%= classify(name) %>>();
 
