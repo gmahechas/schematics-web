@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/search-<%= name %>.model';
 
@@ -16,7 +16,7 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
   @Output() create: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() resetSearch: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  searchForm<%= classify(name) %>: FormGroup = this.formBuilder.group({
+  searchForm<%= classify(name) %> = this.formBuilder.group({
     <%= name %>: this.formBuilder.group({
       // TODO:
     })
@@ -37,8 +37,8 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
   ngOnInit() {
   }
 
-  onSubmit(searchForm<%= classify(name) %>: FormGroup) {
-    this.search.emit(searchForm<%= classify(name) %>.value);
+  onSubmit() {
+    this.search.emit(this.searchForm<%= classify(name) %>.value);
   }
 
   onCreate() {
