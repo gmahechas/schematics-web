@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
 
@@ -22,7 +22,7 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
   @Input() <%= name %>: <%= classify(name) %>;
   @Output() submitted: EventEmitter<<%= classify(name) %>> = new EventEmitter<<%= classify(name) %>>();
 
-  <%= name %>Form: FormGroup = this.formBuilder.group({
+  <%= name %>Form = this.formBuilder.group({
     <%= name %>: this.formBuilder.group({
       // TODO:
     }),
@@ -48,19 +48,19 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
   ngOnInit() {
   }
 
-  onSubmit(<%= name %>Form: FormGroup) {
+  onSubmit() {
 
     if (this.<%= name %>) {
-      if (<%= name %>Form.dirty) {
+      if (this.<%= name %>Form.dirty) {
         const updated = {
             <%= name %>_id: this.<%= name %>.<%= name %>_id,
-            ...<%= name %>Form.value.<%= name %>,
+            ...this.<%= name %>Form.value.<%= name %>,
             // TODO:
         };
         this.submitted.emit(updated);
       }
     } else {
-      this.submitted.emit({...<%= name %>Form.value.<%= name %>}); // TODO:
+      this.submitted.emit({...this.<%= name %>Form.value.<%= name %>}); // TODO:
     }
 
   }
