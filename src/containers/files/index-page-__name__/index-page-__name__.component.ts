@@ -7,6 +7,8 @@ import * as fromCore from '@web/app/core/store';
 import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
 import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/search-<%= name %>.model';
 
+import { take } from 'rxjs/operators';
+
 @Component({
   selector: 'app-index-page-<%= name %>',
   templateUrl: './index-page-<%= name %>.component.html',
@@ -14,7 +16,7 @@ import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/mo
 })
 export class IndexPage<%= classify(name) %>Component implements OnInit {
 
-  query$ = this.store.pipe(select(fromStore.getQuery));
+  query$ = this.store.pipe(select(fromStore.getQuery, take(1)));
 
   data$ = this.store.pipe(select(fromStore.getAllEntities));
   total$ = this.store.pipe(select(fromStore.getTotal));
