@@ -1,15 +1,17 @@
 <form [formGroup]="searchForm<%= classify(name) %>" (ngSubmit)="onSubmit()">
   <app-panel-shared>
-    <div class="panel-header">Buscar // TODO:</div>
+    <div class="panel-header">
+      <app-translate-shared [strings]="['search.verb', '<%= name %>.plural']"></app-translate-shared>
+    </div>
     <div class="panel-content">
       <div class="ui-grid">
         <div class="ui-grid-row">
           // TODO:
           <div class="ui-grid-col-7">
-            <app-button-shared [type]="'submit'" [label]="'Buscar'" [disabled]="searchForm<%= classify(name) %>.invalid"
+            <app-button-shared [type]="'submit'" [label]="['search.verb']" [disabled]="searchForm<%= classify(name) %>.invalid"
               [class]="'ui-button-secondary'"></app-button-shared>
-            <app-button-shared [type]="'button'" [label]="'Agregar'" (click)="onCreate()" [class]="'ui-button-secondary'"></app-button-shared>
-            <app-button-shared [type]="'button'" [label]="'Limpiar'" (click)="onReset()" [class]="'ui-button-secondary'"></app-button-shared>
+            <app-button-shared [type]="'button'" [label]="['create.verb']" (click)="onCreate()" [class]="'ui-button-secondary'"></app-button-shared>
+            <app-button-shared [type]="'button'" [label]="['clean.verb']" (click)="onReset()" [class]="'ui-button-secondary'"></app-button-shared>
           </div>
         </div>
       </div>
