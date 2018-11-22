@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import * as fromStore from '@web/app/<%= path %>/<%= name %>/store';
+import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= name %>/store';
 import * as fromCore from '@web/app/core/store';
 
 import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
@@ -16,17 +16,17 @@ import { take } from 'rxjs/operators';
 })
 export class IndexPage<%= classify(name) %>Component implements OnInit {
 
-  query$ = this.store.pipe(select(fromStore.getQuery, take(1)));
+  query$ = this.store.pipe(select(from<%= classify(name) %>.getQuery, take(1)));
 
-  data$ = this.store.pipe(select(fromStore.getAllEntities));
-  total$ = this.store.pipe(select(fromStore.getTotal));
-  perPage$ = this.store.pipe(select(fromStore.getPerPage));
-  from$ = this.store.pipe(select(fromStore.getFrom));
-  to$ = this.store.pipe(select(fromStore.getTo));
+  data$ = this.store.pipe(select(from<%= classify(name) %>.getAllEntities));
+  total$ = this.store.pipe(select(from<%= classify(name) %>.getTotal));
+  perPage$ = this.store.pipe(select(from<%= classify(name) %>.getPerPage));
+  from$ = this.store.pipe(select(from<%= classify(name) %>.getFrom));
+  to$ = this.store.pipe(select(from<%= classify(name) %>.getTo));
   configTable: any;
 
   constructor(
-    private store: Store<fromStore.State>
+    private store: Store<from<%= classify(name) %>.State>
   ) {
     this.configTable = {
       dataKey: '<%= name %>_id',
@@ -39,7 +39,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   ngOnInit() { }
 
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
-    this.store.dispatch(new fromStore.LoadEntity({
+    this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
       search: {
         <%= name %>: <%= name %>Search.<%= name %>,
         // TODO:
@@ -62,7 +62,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   }
 
   onPaginate(event) {
-    this.store.dispatch(new fromStore.PaginateEntity({ page: event.page + 1 }));
+    this.store.dispatch(new from<%= classify(name) %>.PaginateEntity({ page: event.page + 1 }));
   }
 
   onCancel() {
@@ -72,6 +72,6 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   }
 
   onResetSearch() {
-    this.store.dispatch(new fromStore.ResetSearch());
+    this.store.dispatch(new from<%= classify(name) %>.ResetSearch());
   }
 }
