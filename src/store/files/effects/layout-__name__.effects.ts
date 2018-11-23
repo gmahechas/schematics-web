@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { Store } from '@ngrx/store';
 import * as fromCore from '@web/app/core/store';
-import * as fromActions from '@web/app/<%= path %>/<%= name %>/store/actions';
+import * as from<%= classify(name) %>Actions from '@web/app/<%= path %>/<%= name %>/store/actions';
 
 import { tap } from 'rxjs/operators';
 
@@ -14,12 +14,12 @@ export class Layout<%= classify(name) %> Effects {
   @Effect({ dispatch: false })
   entity$ = this.actions$.pipe(
     ofType(
-      fromActions.EntityActionTypes.LoadEntity,
-      fromActions.EntityActionTypes.StoreEntity,
-      fromActions.EntityActionTypes.UpdateEntity,
-      fromActions.EntityActionTypes.DestroyEntity,
-      fromActions.EntityActionTypes.PaginateEntity,
-      fromActions.EntityActionTypes.LoadEntityShared
+      from<%= classify(name) %>Actions.EntityActionTypes.LoadEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.StoreEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.UpdateEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.DestroyEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.PaginateEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.LoadEntityShared
     ),
     tap(() => {
       this.store.dispatch(new fromCore.ShowSpinner);
@@ -29,7 +29,7 @@ export class Layout<%= classify(name) %> Effects {
   @Effect({ dispatch: false })
   loadSuccessEntity$ = this.actions$.pipe(
     ofType(
-      fromActions.EntityActionTypes.LoadSuccessEntity
+      from<%= classify(name) %>Actions.EntityActionTypes.LoadSuccessEntity
     ),
     tap(() => {
       this.store.dispatch(new fromCore.CloseSpinner);
@@ -39,9 +39,9 @@ export class Layout<%= classify(name) %> Effects {
   @Effect({ dispatch: false })
   success$ = this.actions$.pipe(
     ofType(
-      fromActions.EntityActionTypes.StoreSuccessEntity,
-      fromActions.EntityActionTypes.UpdateSuccessEntity,
-      fromActions.EntityActionTypes.DestroySuccessEntity
+      from<%= classify(name) %>Actions.EntityActionTypes.StoreSuccessEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.UpdateSuccessEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.DestroySuccessEntity
     ),
     tap(() => {
       this.store.dispatch(new fromCore.CloseSpinner);
@@ -56,10 +56,10 @@ export class Layout<%= classify(name) %> Effects {
   @Effect({ dispatch: false })
   fail$ = this.actions$.pipe(
     ofType(
-      fromActions.EntityActionTypes.LoadFailEntity,
-      fromActions.EntityActionTypes.StoreFailEntity,
-      fromActions.EntityActionTypes.UpdateFailEntity,
-      fromActions.EntityActionTypes.DestroyFailEntity
+      from<%= classify(name) %>Actions.EntityActionTypes.LoadFailEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.StoreFailEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.UpdateFailEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.DestroyFailEntity
     ),
     tap(() => {
       this.store.dispatch(new fromCore.CloseSpinner);
@@ -75,10 +75,10 @@ export class Layout<%= classify(name) %> Effects {
   @Effect({ dispatch: false })
   successRedirect$ = this.actions$.pipe(
     ofType(
-      fromActions.EntityActionTypes.LoadEntity,
-      fromActions.EntityActionTypes.StoreSuccessEntity,
-      fromActions.EntityActionTypes.UpdateSuccessEntity,
-      fromActions.EntityActionTypes.DestroySuccessEntity
+      from<%= classify(name) %>Actions.EntityActionTypes.LoadEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.StoreSuccessEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.UpdateSuccessEntity,
+      from<%= classify(name) %>Actions.EntityActionTypes.DestroySuccessEntity
     ),
     tap(() => {
       this.store.dispatch(new fromCore.Go({ path: ['<%= name %>'] }));

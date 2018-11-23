@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Store, select } from '@ngrx/store';
-import * as fromStore from '@web/app/<%= path %>/<%= name %>/store';
+import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= name %>/store';
 import * as fromCore from '@web/app/core/store';
 
 import { Observable, of } from 'rxjs';
@@ -14,12 +14,12 @@ import { tap, map, filter, take, switchMap } from 'rxjs/operators';
 export class <%= classify(name) %>ExistGuard implements CanActivate {
 
   constructor(
-    private store: Store<fromStore.State>
+    private store: Store<from<%= classify(name) %>.State>
   ) { }
 
   hasInStore(<%= name %>_id: string): Observable<boolean> {
     return this.store.pipe(
-      select(fromStore.getEntities),
+      select(from<%= classify(name) %>.getEntities),
       map(entities => !!entities[<%= name %>_id]),
       take(1)
     );
@@ -41,10 +41,10 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
 
   checkStore(<%= name %>_id: string): Observable<boolean> {
     return this.store.pipe(
-      select(fromStore.getLoaded),
+      select(from<%= classify(name) %>.getLoaded),
       tap(loaded => {
         if (!loaded) {
-          this.store.dispatch(new fromStore.LoadEntity({
+          this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
             search: {
               <%= name %>: {
                 <%= name %>_id: <%= name %>_id,
