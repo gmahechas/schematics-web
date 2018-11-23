@@ -8,7 +8,7 @@ import * as fromActions from '@web/app/<%= path %>/<%= name %>/store/actions';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class Layout<%= classify(name) %>Effects {
+export class Layout<%= classify(name) %> Effects {
 
   // Notifications / Spinner
   @Effect({ dispatch: false })
@@ -45,9 +45,11 @@ export class Layout<%= classify(name) %>Effects {
     ),
     tap(() => {
       this.store.dispatch(new fromCore.CloseSpinner);
-      this.store.dispatch(new fromCore.ShowMessages([
-        { severity: 'success', summary: 'Exito', detail: 'Se llevo a cabo', key: 'toast' }
-      ]));
+      this.store.dispatch(new fromCore.ShowMessages({
+        messages: [
+          { severity: 'success', summary: 'Exito', detail: 'Se llevo a cabo', key: 'toast' }
+        ]
+      }));
     })
   );
 
@@ -61,9 +63,11 @@ export class Layout<%= classify(name) %>Effects {
     ),
     tap(() => {
       this.store.dispatch(new fromCore.CloseSpinner);
-      this.store.dispatch(new fromCore.ShowMessages([
-        { severity: 'error', summary: 'Error', detail: 'Ha ocurrido un error.', key: 'toast' }
-      ]));
+      this.store.dispatch(new fromCore.ShowMessages({
+        messages: [
+          { severity: 'error', summary: 'Error', detail: 'Ha ocurrido un error.', key: 'toast' }
+        ]
+      }));
     })
   );
 
@@ -84,5 +88,5 @@ export class Layout<%= classify(name) %>Effects {
   constructor(
     private actions$: Actions,
     private store: Store<fromCore.State>
-  ) { }
+  ) {}
 }
