@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
-import * as fromFeature from '@web/app/<%= path %>/<%= name %>/store/reducers';
-import * as fromSearch from '@web/app/<%= path %>/<%= name %>/store/reducers/search-<%= name %>.reducer';
+import * as fromFeature from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers';
+import * as fromSearch from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/search-<%= dasherize(name) %>.reducer';
 
 export const getSearchState = createSelector(
     fromFeature.get<%= classify(name) %>State,

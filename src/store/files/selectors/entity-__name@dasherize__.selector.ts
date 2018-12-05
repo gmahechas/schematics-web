@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
-import * as fromFeature from '@web/app/<%= path %>/<%= name %>/store/reducers';
-import * as fromEntity from '@web/app/<%= path %>/<%= name %>/store/reducers/entity-<%= name %>.reducer';
+import * as fromFeature from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers';
+import * as fromEntity from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/entity-<%= dasherize(name) %>.reducer';
 import * as fromCore from '@web/app/core/store';
 
 export const getEntityState = createSelector(

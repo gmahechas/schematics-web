@@ -1,9 +1,9 @@
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
-import * as fromEntity from '@web/app/<%= path %>/<%= name %>/store/reducers/entity-<%= name %>.reducer';
-import * as fromSearch from '@web/app/<%= path %>/<%= name %>/store/reducers/search-<%= name %>.reducer';
-import * as fromPagination from '@web/app/<%= path %>/<%= name %>/store/reducers/pagination-<%= name %>.reducer';
-import * as fromLayout from '@web/app/<%= path %>/<%= name %>/store/reducers/layout-<%= name %>.reducer';
+import * as fromEntity from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/entity-<%= dasherize(name) %>.reducer';
+import * as fromSearch from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/search-<%= dasherize(name) %>.reducer';
+import * as fromPagination from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/pagination-<%= dasherize(name) %>.reducer';
+import * as fromLayout from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/layout-<%= dasherize(name) %>.reducer';
 import * as fromCore from '@web/app/core/store';
 
 export interface <%= classify(name) %>State {
@@ -21,7 +21,7 @@ export const reducers: ActionReducerMap<<%= classify(name) %>State> = {
 };
 
 export interface State extends fromCore.State {
-  <%= name %>: <%= classify(name) %>State;
+  <%= underscore(name) %>: <%= classify(name) %>State;
 }
 
-export const get<%= classify(name) %>State = createFeatureSelector<State, <%= classify(name) %>State>('<%= name %>');
+export const get<%= classify(name) %>State = createFeatureSelector<State, <%= classify(name) %>State>('<%= underscore(name) %>');

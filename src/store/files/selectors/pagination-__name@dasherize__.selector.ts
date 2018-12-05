@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
-import * as fromFeature from '@web/app/<%= path %>/<%= name %>/store/reducers';
-import * as fromPagination from '@web/app/<%= path %>/<%= name %>/store/reducers/pagination-<%= name %>.reducer';
+import * as fromFeature from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers';
+import * as fromPagination from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/pagination-<%= dasherize(name) %>.reducer';
 
 export const getPaginationState = createSelector(
     fromFeature.get<%= classify(name) %>State,

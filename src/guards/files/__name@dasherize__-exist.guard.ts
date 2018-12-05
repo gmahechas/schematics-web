@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Store, select } from '@ngrx/store';
-import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= name %>/store';
+import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
 import * as fromCore from '@web/app/core/store';
 
 import { Observable, of } from 'rxjs';
@@ -26,7 +26,7 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
   }
 
   hasEntity(<%= name %>_id: string): Observable<boolean> {
-    return this.hasInStore(<%= name %>_id).pipe(
+    return this.hasInStore(<%= dasherize(name) %>_id).pipe(
       switchMap(inStore => {
         if (inStore) {
           return of(inStore);

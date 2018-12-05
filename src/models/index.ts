@@ -1,7 +1,7 @@
 import { Rule, SchematicContext, Tree, chain, mergeWith, apply, url, template, move } from '@angular-devkit/schematics';
-import { classify } from '@angular-devkit/core/src/utils/strings';
+import { classify, dasherize, underscore } from '@angular-devkit/core/src/utils/strings';
 
-const stringUtils = {classify};
+const stringUtils = { classify, dasherize, underscore };
 
 export default function (options: any): Rule {
   return chain([
@@ -9,8 +9,8 @@ export default function (options: any): Rule {
       context.logger.info('Models Schematic: ' + JSON.stringify(options));
     },
     mergeWith(apply(url('./files'), [
-      template({...stringUtils, ...options }),
-      move(options.path + '/' + options.name + '/models')
+      template({ ...stringUtils, ...options }),
+      move(options.path + '/' + dasherize(options.name) + '/models')
     ]))
   ]);
 }

@@ -1,4 +1,4 @@
-import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= name %>/store/actions/entity-<%= name %>.actions';
+import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions/entity-<%= dasherize(name) %>.actions';
 
 export interface State {
   error: string;

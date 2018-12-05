@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import * as fromGraphql from '@web/app/<%= path %>/<%= name %>/graphql';
+import * as fromGraphql from '@web/app/<%= path %>/<%= dasherize(name) %>/graphql';
 
-import * as fromModels from '@web/app/<%= path %>/<%= name %>/models';
+import * as fromModels from '@web/app/<%= path %>/<%= dasherize(name) %>/models';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class <%= classify(name) %>Service {
 
   load(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
     return this.<%= name %>Pagination.watch({
-      ...search<%= classify(name) %>.<%= name %>,
+      ...search<%= classify(name) %>.<%= underscore(name) %>,
       // TODO:
       limit: search<%= classify(name) %>.limit,
       page: search<%= classify(name) %>.page
@@ -39,7 +39,7 @@ export class <%= classify(name) %>Service {
 
   pagination(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
     return this.<%= name %>Pagination.fetch({
-      <%= name %>_id: search<%= classify(name) %>.<%= name %>.<%= name %>_id,
+      <%= name %>_id: search<%= classify(name) %>.<%= underscore(name) %>.<%= underscore(name) %>_id,
       // TODO:
       limit: search<%= classify(name) %>.limit,
       page: search<%= classify(name) %>.page

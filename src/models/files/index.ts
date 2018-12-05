@@ -1,6 +1,6 @@
-export * from '@web/app/<%= path %>/<%= name %>/models/<%= name  %>.model';
-export * from '@web/app/<%= path %>/<%= name %>/models/search-<%= name  %>.model';
-export * from '@web/app/<%= path %>/<%= name %>/models/pagination-<%= name  %>.model';
-export * from '@web/app/<%= path %>/<%= name %>/models/store-<%= name  %>.model';
-export * from '@web/app/<%= path %>/<%= name %>/models/update-<%= name  %>.model';
-export * from '@web/app/<%= path %>/<%= name %>/models/destroy-<%= name  %>.model';
+export * from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
+export * from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
+export * from '@web/app/<%= path %>/<%= dasherize(name) %>/models/pagination-<%= dasherize(name) %>.model';
+export * from '@web/app/<%= path %>/<%= dasherize(name) %>/models/store-<%= dasherize(name) %>.model';
+export * from '@web/app/<%= path %>/<%= dasherize(name) %>/models/update-<%= dasherize(name) %>.model';
+export * from '@web/app/<%= path %>/<%= dasherize(name) %>/models/destroy-<%= dasherize(name) %>.model';

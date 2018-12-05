@@ -1,4 +1,4 @@
-import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name  %>.model';
+import { <%= classify(name) %> } from '@web/app/<%= dasherize(path) %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
 
 export interface Pagination<%= classify(name) %> {
   pagination<%= classify(name)  %>: {

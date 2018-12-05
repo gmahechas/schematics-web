@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Store<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/store-<%= name %>.model';
+import { Store<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/store-<%= dasherize(name) %>.model';
 
 import { Mutation } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
@@ -14,11 +14,11 @@ export class <%= classify(name) %>StoreGQL extends Mutation<Store<%= classify(na
   document: DocumentNode = gql`
     mutation store<%= classify(name) %>(// TODO:) {
       store<%= classify(name) %>(// TODO:) {
-        <%= name %>_id
+        <%= underscore(name) %>_id
         // TODO:
-        <%= name %>_created_at
-        <%= name %>_updated_at
-        <%= name %>_deleted_at
+        <%= underscore(name) %>_created_at
+        <%= underscore(name) %>_updated_at
+        <%= underscore(name) %>_deleted_at
       }
     }
   `;

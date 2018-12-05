@@ -1,1 +1,1 @@
-export * from '@web/app/<%= path %>/<%= name %>/store/actions/entity-<%= name %>.actions';
+export * from '@web/app/<%= dasherize(path) %>/<%= dasherize(name) %>/store/actions/entity-<%= dasherize(name) %>.actions';

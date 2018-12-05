@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import * as fromModels from '@web/app/<%= path %>/<%= name %>/models';
+import * as fromModels from '@web/app/<%= path %>/<%= dasherize(name) %>/models';
 
 export enum EntityActionTypes {
   LoadEntity = '[<%= classify(name) %>] Load Entity ',

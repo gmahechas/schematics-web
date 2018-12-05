@@ -1,5 +1,5 @@
-import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= name %>/store/actions/entity-<%= name %>.actions';
-import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/search-<%= name %>.model';
+import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions/entity-<%= dasherize(name) %>.actions';
+import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
 
 export interface State {
   loaded: boolean;
@@ -9,8 +9,8 @@ export interface State {
 export const initialState: State = {
   loaded: false,
   query: {
-    <%= name %>: {
-      <%= name %>_id: ''
+    <%= underscore(name) %>: {
+      <%= underscore(name) %>_id: ''
       // TODO:
     }
   }
@@ -26,7 +26,7 @@ export function reducer(state = initialState, action: EntityActions): State {
         ...state,
         loaded: false,
         query: { 
-          <%= name %>: action.payload.search.<%= name %>
+          <%= underscore(name) %>: action.payload.search.<%= underscore(name) %>
           // TODO:
         }
       };

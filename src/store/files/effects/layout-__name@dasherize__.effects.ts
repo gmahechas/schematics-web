@@ -3,12 +3,12 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 
 import { Store } from '@ngrx/store';
 import * as fromCore from '@web/app/core/store';
-import * as from<%= classify(name) %>Actions from '@web/app/<%= path %>/<%= name %>/store/actions';
+import * as from<%= classify(name) %>Actions from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions';
 
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class Layout<%= classify(name) %> Effects {
+export class Layout<%= classify(name) %>Effects {
 
   // Notifications / Spinner
   @Effect({ dispatch: false })
@@ -81,7 +81,7 @@ export class Layout<%= classify(name) %> Effects {
       from<%= classify(name) %>Actions.EntityActionTypes.DestroySuccessEntity
     ),
     tap(() => {
-      this.store.dispatch(new fromCore.Go({ path: ['<%= name %>'] }));
+      this.store.dispatch(new fromCore.Go({ path: ['<%= underscore(name) %>'] }));
     })
   );
 

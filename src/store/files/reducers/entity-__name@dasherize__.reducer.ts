@@ -1,13 +1,13 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
-import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= name %>/store/actions/entity-<%= name %>.actions';
+import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
+import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions/entity-<%= dasherize(name) %>.actions';
 
 export interface State extends EntityState<<%= classify(name) %>> {
 
 }
 
 export const adapter: EntityAdapter<<%= classify(name) %>> = createEntityAdapter<<%= classify(name) %>>({
-  selectId: (entity: <%= classify(name) %>) => entity.<%= name %>_id,
+  selectId: (entity: <%= classify(name) %>) => entity.<%= underscore(name) %>_id,
   sortComparer: false
 });
 
@@ -32,7 +32,7 @@ export function reducer(state = initialState, action: EntityActions): State {
 
     case EntityActionTypes.UpdateSuccessEntity: {
       return adapter.updateOne({
-        id: action.payload.entity.update<%= classify(name) %>.<%= name %>_id,
+        id: action.payload.entity.update<%= classify(name) %>.<%= underscore(name) %>_id,
         changes: action.payload.entity.update<%= classify(name) %>
       },
         state
@@ -40,7 +40,7 @@ export function reducer(state = initialState, action: EntityActions): State {
     }
 
     case EntityActionTypes.DestroySuccessEntity: {
-      return adapter.removeOne(action.payload.entity.destroy<%= classify(name) %>.<%= name %>_id, state);
+      return adapter.removeOne(action.payload.entity.destroy<%= classify(name) %>.<%= underscore(name) %>_id, state);
     }
 
     case EntityActionTypes.ResetSearch: {

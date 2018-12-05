@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Pagination<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/pagination-<%= name %>.model';
+import { Pagination<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/pagination-<%= dasherize(name) %>.model';
 
 import { Query } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
@@ -13,13 +13,13 @@ export class <%= classify(name) %>PaginationGQL extends Query<Pagination<%= clas
 
   document: DocumentNode = gql`
     query pagination<%= classify(name) %>(
-      $<%= name %>_id: ID,
+      $<%= underscore(name) %>_id: ID,
       // TODO:
       $limit: Int,
       $page: Int
     ) {
       pagination<%= classify(name) %>(
-        <%= name %>_id: $<%= name %>_id,
+        <%= underscore(name) %>_id: $<%= underscore(name) %>_id,
         // TODO:
         limit: $limit,
         page: $page
@@ -30,11 +30,11 @@ export class <%= classify(name) %>PaginationGQL extends Query<Pagination<%= clas
         from
         to
         data {
-          <%= name %>_id
+          <%= underscore(name) %>_id
           // TODO:
-          <%= name %>_created_at
-          <%= name %>_updated_at
-          <%= name %>_deleted_at
+          <%= underscore(name) %>_created_at
+          <%= underscore(name) %>_updated_at
+          <%= underscore(name) %>_deleted_at
         }
       }
     }
