@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
-import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/search-<%= name %>.model';
+import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
 
 @Component({
-  selector: 'app-search-form-<%= name %>',
+  selector: 'app-search-form-<%= dasherize(name) %>',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './search-form-<%= name %>.component.html',
+  templateUrl: './search-form-<%= dasherize(name) %>.component.html',
   styles: []
 })
 export class SearchForm<%= classify(name) %>Component implements OnChanges, OnInit {
@@ -17,7 +17,7 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
   @Output() resetSearch: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   searchForm<%= classify(name) %> = this.formBuilder.group({
-    <%= name %>: this.formBuilder.group({
+    <%= underscore(name) %>: this.formBuilder.group({
       // TODO:
     })
   });
@@ -28,7 +28,7 @@ export class SearchForm<%= classify(name) %>Component implements OnChanges, OnIn
 
   ngOnChanges() {
     this.searchForm<%= classify(name) %>.setValue({
-      <%= name %>: {
+      <%= underscore(name) %>: {
         // TODO:
       }
     });

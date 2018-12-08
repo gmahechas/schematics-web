@@ -39,7 +39,7 @@ export class <%= classify(name) %>Service {
 
   pagination(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
     return this.<%= name %>Pagination.fetch({
-      <%= name %>_id: search<%= classify(name) %>.<%= underscore(name) %>.<%= underscore(name) %>_id,
+      <%= underscore(name) %>_id: search<%= classify(name) %>.<%= underscore(name) %>.<%= underscore(name) %>_id,
       // TODO:
       limit: search<%= classify(name) %>.limit,
       page: search<%= classify(name) %>.page

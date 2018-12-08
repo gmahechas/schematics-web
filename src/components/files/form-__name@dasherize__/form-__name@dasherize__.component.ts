@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
+import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
 
 @Component({
   selector: 'app-form-<%= name %>',
@@ -23,7 +23,7 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
   @Output() submitted: EventEmitter<<%= classify(name) %>> = new EventEmitter<<%= classify(name) %>>();
 
   <%= name %>Form = this.formBuilder.group({
-    <%= name %>: this.formBuilder.group({
+    <%= underscore(name) %>: this.formBuilder.group({
       // TODO:
     }),
     // TODO:
@@ -37,7 +37,7 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
     if (this.<%= name %>) {
       this.<%= name %>Form.reset();
       this.<%= name %>Form.setValue({
-        <%= name %>: {
+        <%= underscore(name) %>: {
           // TODO:
         },
         // TODO:
@@ -53,14 +53,14 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
     if (this.<%= name %>) {
       if (this.<%= name %>Form.dirty) {
         const updated = {
-            <%= name %>_id: this.<%= name %>.<%= name %>_id,
-            ...this.<%= name %>Form.value.<%= name %>,
+            <%= underscore(name) %>_id: this.<%= name %>.<%= underscore(name) %>_id,
+            ...this.<%= name %>Form.value.<%= underscore(name) %>,
             // TODO:
         };
         this.submitted.emit(updated);
       }
     } else {
-      this.submitted.emit({...this.<%= name %>Form.value.<%= name %>}); // TODO:
+      this.submitted.emit({...this.<%= name %>Form.value.<%= underscore(name) %>}); // TODO:
     }
 
   }

@@ -17,16 +17,16 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
     private store: Store<from<%= classify(name) %>.State>
   ) { }
 
-  hasInStore(<%= name %>_id: string): Observable<boolean> {
+  hasInStore(<%= underscore(name) %>_id: string): Observable<boolean> {
     return this.store.pipe(
       select(from<%= classify(name) %>.getEntities),
-      map(entities => !!entities[<%= name %>_id]),
+      map(entities => !!entities[<%= underscore(name) %>_id]),
       take(1)
     );
   }
 
-  hasEntity(<%= name %>_id: string): Observable<boolean> {
-    return this.hasInStore(<%= dasherize(name) %>_id).pipe(
+  hasEntity(<%= underscore(name) %>_id: string): Observable<boolean> {
+    return this.hasInStore(<%= underscore(name) %>_id).pipe(
       switchMap(inStore => {
         if (inStore) {
           return of(inStore);
@@ -39,15 +39,15 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
     );
   }
 
-  checkStore(<%= name %>_id: string): Observable<boolean> {
+  checkStore(<%= underscore(name) %>_id: string): Observable<boolean> {
     return this.store.pipe(
       select(from<%= classify(name) %>.getLoaded),
       tap(loaded => {
         if (!loaded) {
           this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
             search: {
-              <%= name %>: {
-                <%= name %>_id: <%= name %>_id,
+              <%= underscore(name) %>: {
+                <%= underscore(name) %>_id: <%= underscore(name) %>_id,
                 // TODO:
               },
               // TODO:
@@ -61,8 +61,8 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    return this.checkStore(route.params.<%= name %>_id).pipe(
-      switchMap(() => this.hasEntity(route.params.<%= name %>_id))
+    return this.checkStore(route.params.<%= underscore(name) %>_id).pipe(
+      switchMap(() => this.hasEntity(route.params.<%= underscore(name) %>_id))
     );
   }
 

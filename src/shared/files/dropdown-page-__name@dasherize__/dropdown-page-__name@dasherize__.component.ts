@@ -2,12 +2,12 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { FormGroup } from '@angular/forms';
 
 import { Store, select } from '@ngrx/store';
-import * as fromStore from '@web/app/<%= path %>/<%= name %>/store';
+import * as fromStore from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
 
 @Component({
-  selector: 'app-dropdown-page-<%= name %>',
+  selector: 'app-dropdown-page-<%= dasherize(name) %>',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './dropdown-page-<%= name %>.component.html',
+  templateUrl: './dropdown-page-<%= dasherize(name) %>.component.html',
   styles: []
 })
 export class DropdownPage<%= classify(name) %>Component implements OnInit {
@@ -32,7 +32,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   keyUp(event) {
     this.store.dispatch(new fromStore.LoadEntityShared({
       search: {
-        <%= name %>: {
+        <%= underscore(name) %>: {
           // TODO:
         },
         // TODO:

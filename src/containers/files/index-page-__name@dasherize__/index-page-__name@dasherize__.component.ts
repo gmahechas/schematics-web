@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= name %>/store';
+import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
 import * as fromCore from '@web/app/core/store';
 
-import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
-import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/search-<%= name %>.model';
+import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
+import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
 
 import { take } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-index-page-<%= name %>',
-  templateUrl: './index-page-<%= name %>.component.html',
+  selector: 'app-index-page-<%= dasherize(name) %>',
+  templateUrl: './index-page-<%= dasherize(name) %>.component.html',
   styles: []
 })
 export class IndexPage<%= classify(name) %>Component implements OnInit {
@@ -29,7 +29,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
     private store: Store<from<%= classify(name) %>.State>
   ) {
     this.configTable = {
-      dataKey: '<%= name %>_id',
+      dataKey: '<%= underscore(name) %>_id',
       cols: [
         // TODO:
       ]
@@ -41,7 +41,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
     this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
       search: {
-        <%= name %>: <%= name %>Search.<%= name %>,
+        <%= underscore(name) %>: <%= name %>Search.<%= underscore(name) %>,
         // TODO:
         limit: 20,
         page: 1
@@ -51,13 +51,13 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
 
   onCreate() {
     this.store.dispatch(new fromCore.Go({
-      path: ['<%= name %>', 'create']
+      path: ['<%= underscore(name) %>', 'create']
     }));
   }
 
   onEdit(<%= name %>: <%= classify(name) %>) {
     this.store.dispatch(new fromCore.Go({
-      path: ['<%= name %>', <%= name %>.<%= name %>_id]
+      path: ['<%= name %>', <%= name %>.<%= underscore(name) %>_id]
     }));
   }
 
@@ -67,7 +67,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
 
   onCancel() {
     this.store.dispatch(new fromCore.Go({
-      path: ['<%= name %>']
+      path: ['<%= underscore(name) %>']
     }));
   }
 

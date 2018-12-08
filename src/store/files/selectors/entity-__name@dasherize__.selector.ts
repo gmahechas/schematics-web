@@ -20,6 +20,6 @@ export const getSelectedByRouter = createSelector(
   getEntities,
   fromCore.getRouterState,
   (entities, router) => {
-    return router.state && entities[router.state.params.<%= name %>_id];
+    return router.state && entities[router.state.params.<%= underscore(name) %>_id];
   }
 );

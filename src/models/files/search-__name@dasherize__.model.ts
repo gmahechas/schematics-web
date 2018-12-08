@@ -1,6 +1,6 @@
 export interface Search<%= classify(name) %> {
-  <%= dasherize(name) %>?: {
-    <%= dasherize(name) %>_id?: string;
+  <%= underscore(name) %>?: {
+    <%= underscore(name) %>_id?: string;
     // TODO:
   };
   // TODO:

@@ -1,7 +1,7 @@
-import { DropdownPage<%= classify(name) %>Component } from '@web/app/<%= path %>/<%= name %>/shared/dropdown-page-<%= name %>/dropdown-page-<%= name %>.component';
+import { DropdownPage<%= classify(name) %>Component } from '@web/app/<%= path %>/<%= dasherize(name) %>/shared/dropdown-page-<%= dasherize(name) %>/dropdown-page-<%= dasherize(name) %>.component';
 
 export const shared: any[] = [
   DropdownPage<%= classify(name) %>Component
 ];
 
-export * from '@web/app/<%= path %>/<%= name %>/shared/dropdown-page-<%= name %>/dropdown-page-<%= name %>.component';
+export * from '@web/app/<%= path %>/<%= dasherize(name) %>/shared/dropdown-page-<%= dasherize(name) %>/dropdown-page-<%= dasherize(name) %>.component';

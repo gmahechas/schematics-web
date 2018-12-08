@@ -1,0 +1,15 @@
+<app-form-<%= dasherize(name) %> *ngIf="!(<%= name %>$ | async) as <%= name %>" [pending]="pending$ | async" (submitted)="onStore($event)">
+    <div class="form-title">
+      <app-translate-shared [strings]="['create.verb', '<%= underscore(name) %>.singular']"></app-translate-shared>
+    </div>
+    <app-button-shared [type]="'button'" [label]="['cancel.verb']" [class]="'ui-button-secondary'" (click)="onCancel()"></app-button-shared>
+  </app-form-<%= dasherize(name) %>>
+  
+  <app-form-<%= dasherize(name) %> *ngIf="(<%= name %>$ | async) as <%= name %>" [pending]="pending$ | async" (submitted)="onUpdate($event)" [<%= name %>]="<%= name %>">
+    <div class="form-title">
+      <app-translate-shared [strings]="['edit.verb', '<%= underscore(name) %>.singular']"></app-translate-shared>
+    </div>
+    <app-button-shared [type]="'button'" [label]="['delete.verb']" [class]="'ui-button-secondary'" (click)="onDestroy(<%= name %>)"></app-button-shared>
+    <app-button-shared [type]="'button'" [label]="['cancel.verb']" [class]="'ui-button-secondary'" (click)="onCancel()"></app-button-shared>
+  </app-form-<%= dasherize(name) %>>
+  

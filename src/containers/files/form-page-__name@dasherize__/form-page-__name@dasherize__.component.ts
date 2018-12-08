@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= name %>/store';
+import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
 import * as fromCore from '@web/app/core/store';
 
-import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= name %>/models/<%= name %>.model';
+import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
 
 @Component({
-  selector: 'app-form-page-<%= name %>',
-  templateUrl: './form-page-<%= name %>.component.html',
+  selector: 'app-form-page-<%= dasherize(name) %>',
+  templateUrl: './form-page-<%= dasherize(name) %>.component.html',
   styles: []
 })
 export class FormPage<%= classify(name) %>Component implements OnInit {
