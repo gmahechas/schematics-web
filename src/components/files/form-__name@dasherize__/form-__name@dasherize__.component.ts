@@ -4,9 +4,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
 
 @Component({
-  selector: 'app-form-<%= name %>',
+  selector: 'app-form-<%= dasherize(name) %>',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './form-<%= name %>.component.html',
+  templateUrl: './form-<%= dasherize(name) %>.component.html',
   styles: []
 })
 export class Form<%= classify(name) %>Component implements OnChanges, OnInit {

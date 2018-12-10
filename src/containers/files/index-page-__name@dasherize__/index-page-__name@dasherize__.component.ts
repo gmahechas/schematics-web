@@ -57,7 +57,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
 
   onEdit(<%= name %>: <%= classify(name) %>) {
     this.store.dispatch(new fromCore.Go({
-      path: ['<%= name %>', <%= name %>.<%= underscore(name) %>_id]
+      path: ['<%= underscore(name) %>', <%= name %>.<%= underscore(name) %>_id]
     }));
   }
 
