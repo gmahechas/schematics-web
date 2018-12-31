@@ -20,7 +20,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   @Input() filterPlaceholder: string;
   @Output() changeDropdown: EventEmitter<any> = new EventEmitter<any>();
   entities$ = this.store.pipe(select(fromStore.getAllEntities));
-  entityId = '<%= name %>_id';
+  entityId = '<%= underscore(name) %>_id';
 
   constructor(
     private store: Store<fromStore.State>
