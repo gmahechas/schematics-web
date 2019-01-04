@@ -32,6 +32,7 @@ export class FormPage<%= classify(name) %>Component implements OnInit {
   }
 
   onCancel() {
+    this.store.dispatch(new from<%= classify(name) %>.SelectEntity({ entity: null }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= name %>']
     }));

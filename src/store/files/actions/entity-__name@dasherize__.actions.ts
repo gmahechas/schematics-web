@@ -9,6 +9,7 @@ export enum EntityActionTypes {
   StoreEntity = '[<%= classify(name) %>] Store Entity',
   StoreSuccessEntity = '[<%= classify(name) %>] Store Success Entity',
   StoreFailEntity = '[<%= classify(name) %>] Store Fail Entity',
+  SelectEntity = '[<%= classify(name) %>] Select Entity',
   UpdateEntity = '[<%= classify(name) %>] Update Entity',
   UpdateSuccessEntity = '[<%= classify(name) %>] Update Success Entity',
   UpdateFailEntity = '[<%= classify(name) %>] Update Fail Entity',
@@ -48,6 +49,11 @@ export class StoreSuccessEntity implements Action {
 export class StoreFailEntity implements Action {
   readonly type = EntityActionTypes.StoreFailEntity;
   constructor(public payload: { error: any }) { }
+}
+
+export class SelectEntity implements Action {
+  readonly type = EntityActionTypes.SelectEntity;
+  constructor(public payload: { entity: fromModels.<%= classify(name) %> }) { }
 }
 
 export class UpdateEntity implements Action {
@@ -101,6 +107,7 @@ export type EntityActions =
   | StoreEntity
   | StoreSuccessEntity
   | StoreFailEntity
+  | SelectEntity
   | UpdateEntity
   | UpdateSuccessEntity
   | UpdateFailEntity

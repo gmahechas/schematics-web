@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
 import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
@@ -7,6 +7,7 @@ import * as fromCore from '@web/app/core/store';
 import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
 import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
 
+import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -14,7 +15,10 @@ import { take } from 'rxjs/operators';
   templateUrl: './index-page-<%= dasherize(name) %>.component.html',
   styles: []
 })
-export class IndexPage<%= classify(name) %>Component implements OnInit {
+export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestroy {
+
+  subscription: Subscription;
+  selected: any;
 
   query$ = this.store.pipe(select(from<%= classify(name) %>.getQuery, take(1)));
 
@@ -36,7 +40,18 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
     };
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.subscription = this.store.pipe(select(from<%= classify(name) %>.getSelectedEntity), take(1)).subscribe(
+      (<%= underscore(name) %>: <%= classify(name) %>) => {
+        if (<%= underscore(name) %>) {
+          this.selected = <%= underscore(name) %>;
+          this.store.dispatch(new fromCore.Go({
+            path: ['<%= underscore(name) %>', <%= underscore(name) %>.<%= underscore(name) %>_id]
+          }));
+        }
+      }
+    );
+  }
 
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
     this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
@@ -50,12 +65,14 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   }
 
   onCreate() {
+    this.store.dispatch(new from<%= classify(name) %>.SelectEntity({ entity: null }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>', 'create']
     }));
   }
 
   onEdit(<%= name %>: <%= classify(name) %>) {
+    this.store.dispatch(new from<%= classify(name) %>.SelectEntity({ entity: <%= name %> }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>', <%= name %>.<%= underscore(name) %>_id]
     }));
@@ -66,6 +83,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
   }
 
   onCancel() {
+    this.store.dispatch(new from<%= classify(name) %>.SelectEntity({ entity: null }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>']
     }));
@@ -73,5 +91,9 @@ export class IndexPage<%= classify(name) %>Component implements OnInit {
 
   onResetSearch() {
     this.store.dispatch(new from<%= classify(name) %>.ResetSearch());
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
