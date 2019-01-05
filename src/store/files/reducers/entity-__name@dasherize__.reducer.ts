@@ -3,7 +3,9 @@ import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) 
 import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions/entity-<%= dasherize(name) %>.actions';
 
 export interface State extends EntityState<<%= classify(name) %>> {
-  selectedEntity: <%= classify(name) %> | null;
+  selected: {
+    selectedEntity: <%= classify(name) %> | null;
+  };
 }
 
 export const adapter: EntityAdapter<<%= classify(name) %>> = createEntityAdapter<<%= classify(name) %>>({
@@ -12,7 +14,9 @@ export const adapter: EntityAdapter<<%= classify(name) %>> = createEntityAdapter
 });
 
 export const initialState: State = adapter.getInitialState({
-  selectedEntity: null,
+  selected: {
+    selectedEntity: null
+  }
 });
 
 export function reducer(state = initialState, action: EntityActions): State {
@@ -22,12 +26,12 @@ export function reducer(state = initialState, action: EntityActions): State {
     case EntityActionTypes.LoadSuccessEntity: {
       return adapter.addAll(
         action.payload.entities.pagination<%= classify(name) %>.data,
-        { ...state, selectedEntity: null }
+        { ...state, selected: { selectedEntity: null } }
       );
     }
 
     case EntityActionTypes.LoadFailEntity: {
-      return adapter.removeAll({ ...state, selectedEntity: null });
+      return adapter.removeAll({ ...state, selected: { selectedEntity: null } });
     }
 
     case EntityActionTypes.StoreSuccessEntity: {
@@ -38,7 +42,7 @@ export function reducer(state = initialState, action: EntityActions): State {
     case EntityActionTypes.SelectEntity: {
       return {
         ...state,
-        selectedEntity: action.payload.entity
+        selected: { selectedEntity: action.payload.entity }
       };
     }
 
@@ -47,19 +51,19 @@ export function reducer(state = initialState, action: EntityActions): State {
         id: action.payload.entity.update<%= classify(name) %>.<%= underscore(name) %>_id,
         changes: action.payload.entity.update<%= classify(name) %>
       },
-        { ...state, selectedEntity: null }
+        { ...state, selected: { selectedEntity: null } }
       );
     }
 
     case EntityActionTypes.DestroySuccessEntity: {
       return adapter.removeOne(
         action.payload.entity.destroy<%= classify(name) %>.<%= underscore(name) %>_id,
-        { ...state, selectedEntity: null }
+        { ...state, selected: { selectedEntity: null } }
       );
     }
 
     case EntityActionTypes.ResetSearch: {
-      return adapter.removeAll({ ...state, selectedEntity: null });
+      return adapter.removeAll({ ...state, selected: { selectedEntity: null } });
     }
 
     default:
@@ -68,4 +72,4 @@ export function reducer(state = initialState, action: EntityActions): State {
 
 }
 
-export const getSelectedEntity = (state: State) => state.selectedEntity;
+export const getSelected = (state: State) => state.selected;

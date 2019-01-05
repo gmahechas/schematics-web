@@ -18,7 +18,7 @@ import { take } from 'rxjs/operators';
 export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestroy {
 
   subscription: Subscription;
-  selected: any;
+  selectedEntity: <%= classify(name) %>;
 
   query$ = this.store.pipe(select(from<%= classify(name) %>.getQuery, take(1)));
 
@@ -41,12 +41,12 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
   }
 
   ngOnInit() {
-    this.subscription = this.store.pipe(select(from<%= classify(name) %>.getSelectedEntity), take(1)).subscribe(
-      (<%= underscore(name) %>: <%= classify(name) %>) => {
-        if (<%= underscore(name) %>) {
-          this.selected = <%= underscore(name) %>;
+    this.subscription = this.store.pipe(select(from<%= classify(name) %>.getSelected), take(1)).subscribe(
+      (selected: { selectedEntity: <%= classify(name) %> | null }) => {
+        if (selected.selectedEntity) {
+          this.selectedEntity = selected.selectedEntity;
           this.store.dispatch(new fromCore.Go({
-            path: ['<%= underscore(name) %>', <%= underscore(name) %>.<%= underscore(name) %>_id]
+            path: ['<%= underscore(name) %>', selected.selectedEntity.<%= underscore(name) %>_id]
           }));
         }
       }
