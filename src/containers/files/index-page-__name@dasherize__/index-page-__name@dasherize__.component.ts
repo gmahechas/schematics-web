@@ -6,6 +6,7 @@ import * as fromCore from '@web/app/core/store';
 
 import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
 import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
+import { initialStateSelected<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/selected-<%= dasherize(name) %>.model';
 
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -65,14 +66,14 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
   }
 
   onCreate() {
-    this.store.dispatch(new from<%= classify(name) %>.SelectEntity({ entity: null }));
+    this.store.dispatch(new from<%= classify(name) %>.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>', 'create']
     }));
   }
 
   onEdit(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new from<%= classify(name) %>.SelectEntity({ entity: <%= name %> }));
+    this.store.dispatch(new from<%= classify(name) %>.SetSelected({ selected: { ...initialStateSelected<%= classify(name) %>, selectedEntity: <%= name %> } }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>', <%= name %>.<%= underscore(name) %>_id]
     }));
@@ -83,7 +84,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
   }
 
   onCancel() {
-    this.store.dispatch(new from<%= classify(name) %>.SelectEntity({ entity: null }));
+    this.store.dispatch(new from<%= classify(name) %>.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>']
     }));

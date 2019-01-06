@@ -1,18 +1,14 @@
 import { EntityActionTypes, EntityActions } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions/entity-<%= dasherize(name) %>.actions';
-import { <%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/<%= dasherize(name) %>.model';
+import { Selected<%= classify(name) %>, initialStateSelected<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/selected-<%= dasherize(name) %>.model';
 
 export interface State {
-  selected: {
-    selectedEntity: <%= classify(name) %> | null;
-  };
+  selected: Selected<%= classify(name) %>;
   error: string;
   pending: boolean;
 }
 
 export const initialState: State = {
-  selected: {
-    selectedEntity: null
-  },
+  selected: initialStateSelected<%= classify(name) %>,
   error: '',
   pending: false
 };
@@ -21,10 +17,10 @@ export function reducer(state = initialState, action: EntityActions): State {
 
   switch (action.type) {
 
-    case EntityActionTypes.SelectEntity: {
+    case EntityActionTypes.SetSelected: {
       return {
         ...state,
-        selected: { selectedEntity: action.payload.entity }
+        selected: action.payload.selected
       };
     }
 
@@ -34,6 +30,7 @@ export function reducer(state = initialState, action: EntityActions): State {
     case EntityActionTypes.DestroyFailEntity: {
       return {
         ...state,
+        selected: initialStateSelected<%= classify(name) %>,
         error: action.payload.error,
         pending: true
       };
@@ -56,10 +53,15 @@ export function reducer(state = initialState, action: EntityActions): State {
     case EntityActionTypes.DestroySuccessEntity: {
       return {
         ...state,
+        selected: initialStateSelected<%= classify(name) %>,
         pending: false
       };
     }
 
+    case EntityActionTypes.ResetSearch: {
+      return initialState;
+    }
+    
     default:
       return state;
   }
