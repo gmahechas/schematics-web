@@ -1,9 +1,9 @@
-<form [formGroup]="searchForm<%= classify(name) %>" (ngSubmit)="onSubmit()">
-  <app-panel-shared>
-    <div class="panel-header">
-      <app-translate-shared [strings]="['search.verb', '<%= underscore(name) %>.plural']"></app-translate-shared>
-    </div>
-    <div class="panel-content">
+<app-panel-shared>
+  <div class="panel-header">
+    <app-translate-shared [strings]="['search.verb', '<%= underscore(name) %>.plural']"></app-translate-shared>
+  </div>
+  <div class="panel-content">
+    <form [formGroup]="searchForm<%= classify(name) %>" (ngSubmit)="onSubmit()">
       <div class="ui-grid">
         <div class="ui-grid-row">
           // TODO:
@@ -15,6 +15,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </app-panel-shared>
-</form>
+    </form>
+  </div>
+</app-panel-shared>
