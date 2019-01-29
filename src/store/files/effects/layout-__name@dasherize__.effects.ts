@@ -79,7 +79,7 @@ export class Layout<%= classify(name) %>Effects {
       from<%= classify(name) %>Actions.EntityActionTypes.StoreSuccessEntity,
       from<%= classify(name) %>Actions.EntityActionTypes.UpdateSuccessEntity,
       from<%= classify(name) %>Actions.EntityActionTypes.DestroySuccessEntity,
-      from<%= classify(name) %>Actions.EntityActionTypes.ResetSearch
+      from<%= classify(name) %>Actions.EntityActionTypes.Reset
     ),
     tap(() => {
       this.store.dispatch(new fromCore.Go({ path: ['<%= underscore(name) %>'] }));

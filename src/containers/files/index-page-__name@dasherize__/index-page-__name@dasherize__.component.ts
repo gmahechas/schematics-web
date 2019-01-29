@@ -91,7 +91,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
   }
 
   onResetSearch() {
-    this.store.dispatch(new from<%= classify(name) %>.ResetSearch());
+    this.store.dispatch(new from<%= classify(name) %>.Reset());
   }
 
   ngOnDestroy() {
