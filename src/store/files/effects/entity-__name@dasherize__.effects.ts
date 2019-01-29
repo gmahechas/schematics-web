@@ -29,7 +29,7 @@ export class Entity<%= classify(name) %>Effects {
       currentPage = (currentPage) ? currentPage : search<%= classify(name) %>.page;
       return this.<%= camelize(name) %>Service.load({ ...search<%= classify(name) %>, limit: perPage, page: currentPage }).pipe(
         map(({ data }) => new from<%= classify(name) %>Actions.LoadSuccessEntity({ entities: data })),
-        catchError((errors) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error: errors })))
+        catchError((error) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error })))
       );
     })
   );
@@ -41,7 +41,7 @@ export class Entity<%= classify(name) %>Effects {
     switchMap((<%= name %>: fromModels.<%= classify(name) %>) => {
       return this.<%= camelize(name) %>Service.store(<%= name %>).pipe(
         map(({ data }) => new from<%= classify(name) %>Actions.StoreSuccessEntity({ entity: data })),
-        catchError((errors) => of(new from<%= classify(name) %>Actions.StoreFailEntity({ error: errors })))
+        catchError((error) => of(new from<%= classify(name) %>Actions.StoreFailEntity({ error })))
       );
     })
   );
@@ -53,7 +53,7 @@ export class Entity<%= classify(name) %>Effects {
     switchMap((<%= name %>: fromModels.<%= classify(name) %>) => {
       return this.<%= camelize(name) %>Service.update(<%= name %>).pipe(
         map(({ data }) => new from<%= classify(name) %>Actions.UpdateSuccessEntity({ entity: data })),
-        catchError((errors) => of(new from<%= classify(name) %>Actions.UpdateFailEntity({ error: errors })))
+        catchError((error) => of(new from<%= classify(name) %>Actions.UpdateFailEntity({ error })))
       );
     })
   );
@@ -65,7 +65,7 @@ export class Entity<%= classify(name) %>Effects {
     switchMap((<%= name %>: fromModels.<%= classify(name) %>) => {
       return this.<%= camelize(name) %>Service.destroy(<%= name %>).pipe(
         map(({ data }) => new from<%= classify(name) %>Actions.DestroySuccessEntity({ entity: data })),
-        catchError((errors) => of(new from<%= classify(name) %>Actions.DestroyFailEntity({ error: errors })))
+        catchError((error) => of(new from<%= classify(name) %>Actions.DestroyFailEntity({ error })))
       );
     })
   );
@@ -81,7 +81,7 @@ export class Entity<%= classify(name) %>Effects {
     switchMap(([currentPage, perPage, search<%= classify(name) %>]: [number, number, fromModels.Search<%= classify(name) %>]) => {
       return from(this.<%= camelize(name) %>Service.pagination({ ...search<%= classify(name) %>, limit: perPage, page: currentPage })).pipe(
         map(({ data }) => new from<%= classify(name) %>Actions.LoadSuccessEntity({ entities: data })),
-        catchError((errors) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error: errors })))
+        catchError((error) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error })))
       );
     })
   );
@@ -107,9 +107,7 @@ export class Entity<%= classify(name) %>Effects {
         return this.<%= camelize(name) %>Service.load({ ...search<%= classify(name) %>, limit: 20, page: 1 }).pipe(
           takeUntil(nextSearch$),
           map(({ data }) => new from<%= classify(name) %>Actions.LoadSuccessEntity({ entities: data })),
-          catchError((errors) => {
-            return of(new from<%= classify(name) %>Actions.LoadFailEntity({ error: errors }));
-          })
+          catchError((error) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error })))
         );
 
       })
