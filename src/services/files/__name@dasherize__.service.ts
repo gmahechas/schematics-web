@@ -10,14 +10,14 @@ import * as fromModels from '@web/app/<%= path %>/<%= dasherize(name) %>/models'
 export class <%= classify(name) %>Service {
 
   constructor(
-    private <%= name %>Pagination: fromGraphql.<%= classify(name) %>PaginationGQL,
+    private <%= name %>PaginationGQL: fromGraphql.<%= classify(name) %>PaginationGQL,
     private <%= name %>StoreGQL: fromGraphql.<%= classify(name) %>StoreGQL,
     private <%= name %>UpdateGQL: fromGraphql.<%= classify(name) %>UpdateGQL,
     private <%= name %>DestroyGQL: fromGraphql.<%= classify(name) %>DestroyGQL
   ) { }
 
   load(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
-    return this.<%= name %>Pagination.watch({
+    return this.<%= name %>PaginationGQL.watch({
       ...search<%= classify(name) %>.<%= underscore(name) %>,
       // TODO:
       limit: search<%= classify(name) %>.limit,
@@ -38,7 +38,7 @@ export class <%= classify(name) %>Service {
   }
 
   pagination(search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) {
-    return this.<%= name %>Pagination.fetch({
+    return this.<%= name %>PaginationGQL.fetch({
       <%= underscore(name) %>_id: search<%= classify(name) %>.<%= underscore(name) %>.<%= underscore(name) %>_id,
       // TODO:
       limit: search<%= classify(name) %>.limit,
