@@ -17,7 +17,7 @@ export enum EntityActionTypes {
   DestroyFailEntity = '[<%= classify(name) %>] Destroy Fail Entity',
   PaginateEntity = '[<%= classify(name) %>] Paginate Entity',
   LoadEntityShared = '[<%= classify(name) %>] Load Entity Shared',
-  Reset = '[<%= classify(name) %>] Reset Search',
+  Reset = '[<%= classify(name) %>] Reset',
   SetSelected = '[<%= classify(name) %>] Set Selected'
 }
 
