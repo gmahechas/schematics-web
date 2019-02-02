@@ -17,16 +17,16 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
     private store: Store<from<%= classify(name) %>.State>
   ) { }
 
-  hasInStore(<%= camelize(name) %>_id: string): Observable<boolean> {
+  hasInStore(<%= camelize(name) %>Id: string): Observable<boolean> {
     return this.store.pipe(
       select(from<%= classify(name) %>.getEntities),
-      map(entities => !!entities[<%= camelize(name) %>_id]),
+      map(entities => !!entities[<%= camelize(name) %>Id]),
       take(1)
     );
   }
 
-  hasEntity(<%= camelize(name) %>_id: string): Observable<boolean> {
-    return this.hasInStore(<%= camelize(name) %>_id).pipe(
+  hasEntity(<%= camelize(name) %>Id: string): Observable<boolean> {
+    return this.hasInStore(<%= camelize(name) %>Id).pipe(
       switchMap(inStore => {
         if (inStore) {
           return of(inStore);
@@ -39,7 +39,7 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
     );
   }
 
-  checkStore(<%= camelize(name) %>_id: string): Observable<boolean> {
+  checkStore(<%= camelize(name) %>Id: string): Observable<boolean> {
     return this.store.pipe(
       select(from<%= classify(name) %>.getLoaded),
       tap(loaded => {
@@ -47,7 +47,7 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
           this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
             search: {
               <%= underscore(name) %>: {
-                <%= underscore(name) %>_id: <%= camelize(name) %>_id,
+                <%= underscore(name) %>_id: <%= camelize(name) %>Id,
                 // TODO:
               },
               // TODO:
