@@ -1,7 +1,7 @@
 import { Rule, SchematicContext, Tree, chain, mergeWith, apply, url, template, move } from '@angular-devkit/schematics';
-import { classify, dasherize, underscore } from '@angular-devkit/core/src/utils/strings';
+import { classify, dasherize, underscore, camelize } from '@angular-devkit/core/src/utils/strings';
 
-const stringUtils = { classify, dasherize, underscore };
+const stringUtils = { classify, dasherize, underscore, camelize };
 
 export default function (options: any): Rule {
   return chain([
