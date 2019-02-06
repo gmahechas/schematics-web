@@ -4,15 +4,22 @@
   </div>
   <div class="panel-content">
     <form [formGroup]="searchForm<%= classify(name) %>" (ngSubmit)="onSubmit()">
-      <div class="ui-grid">
-        <div class="ui-grid-row">
-          // TODO:
-          <div class="ui-grid-col-7">
-            <app-button-shared [type]="'submit'" [label]="['search.verb']" [disabled]="searchForm<%= classify(name) %>.invalid"
-              [class]="'ui-button-secondary'"></app-button-shared>
-            <app-button-shared [type]="'button'" [label]="['create.verb']" (click)="onCreate()" [class]="'ui-button-secondary'"></app-button-shared>
-            <app-button-shared [type]="'button'" [label]="['clean.verb']" (click)="onReset()" [class]="'ui-button-secondary'"></app-button-shared>
+      <div class="p-grid p-nogutter">
+        <div class="p-col">
+          <div class="p-grid p-nogutter">
+            <div class="p-col">
+              // TODO:
+            </div>
+            <div class="p-col">
+              // TODO:
+            </div>
           </div>
+        </div>
+        <div class="p-col">
+          <app-button-shared [type]="'submit'" [label]="['search.verb']" [disabled]="searchForm<%= classify(name) %>.invalid"
+            [class]="'ui-button-secondary'"></app-button-shared>
+          <app-button-shared [type]="'button'" [label]="['create.verb']" (click)="onCreate()" [class]="'ui-button-secondary'"></app-button-shared>
+          <app-button-shared [type]="'button'" [label]="['clean.verb']" (click)="onReset()" [class]="'ui-button-secondary'"></app-button-shared>
         </div>
       </div>
     </form>
