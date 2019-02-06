@@ -13,15 +13,15 @@ export interface <%= classify(name) %>State {
   layout: fromLayout.State;
 }
 
+export interface State extends fromCore.State {
+  <%= underscore(name) %>: <%= classify(name) %>State;
+}
+
 export const reducers: ActionReducerMap<<%= classify(name) %>State> = {
   entity: fromEntity.reducer,
   search: fromSearch.reducer,
   pagination: fromPagination.reducer,
   layout: fromLayout.reducer
 };
-
-export interface State extends fromCore.State {
-  <%= underscore(name) %>: <%= classify(name) %>State;
-}
 
 export const get<%= classify(name) %>State = createFeatureSelector<State, <%= classify(name) %>State>('<%= underscore(name) %>');
