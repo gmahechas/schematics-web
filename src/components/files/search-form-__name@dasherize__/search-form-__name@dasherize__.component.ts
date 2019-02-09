@@ -12,9 +12,9 @@ import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(
 export class SearchForm<%= classify(name) %>Component implements OnChanges, OnInit {
 
   @Input() query: Search<%= classify(name) %>;
-  @Output() search: EventEmitter<Search<%= classify(name) %>> = new EventEmitter<Search<%= classify(name) %>>();
-  @Output() create: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() resetSearch: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() search = new EventEmitter<Search<%= classify(name) %>>();
+  @Output() create = new EventEmitter<boolean>();
+  @Output() resetSearch = new EventEmitter<boolean>();
 
   searchForm<%= classify(name) %> = this.formBuilder.group({
     <%= underscore(name) %>: this.formBuilder.group({

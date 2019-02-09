@@ -20,7 +20,7 @@ export class Form<%= classify(name) %>Component implements OnChanges, OnInit {
     }
   }
   @Input() <%= name %>: <%= classify(name) %>;
-  @Output() submitted: EventEmitter<<%= classify(name) %>> = new EventEmitter<<%= classify(name) %>>();
+  @Output() submitted = new EventEmitter<<%= classify(name) %>>();
 
   <%= name %>Form = this.formBuilder.group({
     <%= underscore(name) %>: this.formBuilder.group({

@@ -80,7 +80,6 @@ export class Entity<%= classify(name) %>Effects {
     ),
     switchMap(([currentPage, perPage, search<%= classify(name) %>]: [number, number, fromModels.Search<%= classify(name) %>]) => {
       return from(this.<%= camelize(name) %>Service.pagination({ ...search<%= classify(name) %>, limit: perPage, page: currentPage })).pipe(
-        skip(1),
         map(({ data }) => new from<%= classify(name) %>Actions.LoadSuccessEntity({ entities: data })),
         catchError((error) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error })))
       );
