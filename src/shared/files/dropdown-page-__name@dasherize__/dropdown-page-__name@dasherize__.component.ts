@@ -13,11 +13,18 @@ import * as fromStore from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
 export class DropdownPage<%= classify(name) %>Component implements OnInit {
 
   @Input() group: FormGroup;
+  @Input() groupName: string;
   @Input() controlName: string;
   @Input() options: string[];
   @Input() optionLabel: string;
-  @Input() placeholder: string;
-  @Input() filterPlaceholder: string;
+  @Input() filter = true;
+  @Input() placeholder: string[];
+  @Input() filterPlaceholder: string[];
+  @Input() showClear: boolean;
+  @Input() dropdownIcon: string;
+  @Input() emptyFilterMessage: string[];
+  @Input() keyboardKey: 'Enter' | 'Any' = 'Enter';
+  @Input() keyUpTimes = 3;
   @Output() changeDropdown = new EventEmitter<any>();
   entities$ = this.store.pipe(select(fromStore.getAllEntities));
   entityId = '<%= underscore(name) %>_id';
