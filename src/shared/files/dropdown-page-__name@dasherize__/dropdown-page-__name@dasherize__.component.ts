@@ -2,7 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { FormGroup } from '@angular/forms';
 
 import { Store, select } from '@ngrx/store';
-import * as fromStore from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
+import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
+
+import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
 
 @Component({
   selector: 'app-dropdown-page-<%= dasherize(name) %>',
@@ -25,19 +27,20 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   @Input() emptyFilterMessage: string[];
   @Input() keyboardKey: 'Enter' | 'Any' = 'Enter';
   @Input() keyUpTimes = 3;
+  @Input() search<%= classify(name) %>: Search<%= classify(name) %>;
   @Output() changeDropdown = new EventEmitter<any>();
-  entities$ = this.store.pipe(select(fromStore.getAllEntities));
+  entities$ = this.store.pipe(select(from<%= classify(name) %>.getAllEntities));
   entityId = '<%= underscore(name) %>_id';
 
   constructor(
-    private store: Store<fromStore.State>
+    private store: Store<from<%= classify(name) %>.State>
   ) { }
 
   ngOnInit() {
   }
 
   keyUp(event) {
-    this.store.dispatch(new fromStore.LoadEntityShared({
+    this.store.dispatch(new from<%= classify(name) %>.LoadEntityShared({
       search: {
         <%= underscore(name) %>: {
           // TODO:
