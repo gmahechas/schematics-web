@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromCore from '@web/app/core/store';
 import * as from<%= classify(name) %>Actions from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions';
 
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class Layout<%= classify(name) %>Effects {
@@ -78,16 +78,26 @@ export class Layout<%= classify(name) %>Effects {
       from<%= classify(name) %>Actions.EntityActionTypes.LoadEntity,
       from<%= classify(name) %>Actions.EntityActionTypes.StoreSuccessEntity,
       from<%= classify(name) %>Actions.EntityActionTypes.UpdateSuccessEntity,
-      from<%= classify(name) %>Actions.EntityActionTypes.DestroySuccessEntity,
-      from<%= classify(name) %>Actions.EntityActionTypes.Reset
+      from<%= classify(name) %>Actions.EntityActionTypes.DestroySuccessEntity
     ),
     tap(() => {
       this.store.dispatch(new fromCore.Go({ path: ['<%= underscore(name) %>'] }));
     })
   );
 
+  @Effect({ dispatch: false })
+  reset$ = this.actions$.pipe(
+    ofType(from<%= classify(name) %>.EntityActionTypes.Reset),
+    map((action: from<%= classify(name) %>.Reset) => action.payload),
+    tap(({ redirect }) => {
+      if (redirect) {
+        this.store.dispatch(new fromCore.Go({ path: ['<%= underscore(name) %>'] }));
+      }
+    })
+  );
+
   constructor(
     private actions$: Actions,
     private store: Store<fromCore.State>
-  ) {}
+  ) { }
 }

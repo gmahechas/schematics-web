@@ -25,6 +25,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   @Input() showClear: boolean;
   @Input() dropdownIcon: string;
   @Input() emptyFilterMessage: string[];
+  @Input() isConditional = false;
   @Input() keyboardKey: 'Enter' | 'Any' = 'Enter';
   @Input() keyUpTimes = 3;
   @Input() search<%= classify(name) %>: Search<%= classify(name) %>;
