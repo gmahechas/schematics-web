@@ -57,8 +57,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
     this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
       search: {
-        <%= underscore(name) %>: <%= name %>Search.<%= underscore(name) %>,
-        // TODO:
+        ...<%= name %>Search,
         limit: 20,
         page: 1
       }
