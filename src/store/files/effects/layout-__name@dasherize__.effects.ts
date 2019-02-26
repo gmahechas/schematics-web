@@ -87,8 +87,8 @@ export class Layout<%= classify(name) %>Effects {
 
   @Effect({ dispatch: false })
   reset$ = this.actions$.pipe(
-    ofType(from<%= classify(name) %>.EntityActionTypes.Reset),
-    map((action: from<%= classify(name) %>.Reset) => action.payload),
+    ofType(from<%= classify(name) %>Actions.EntityActionTypes.Reset),
+    map((action: from<%= classify(name) %>Actions.Reset) => action.payload),
     tap(({ redirect }) => {
       if (redirect) {
         this.store.dispatch(new fromCore.Go({ path: ['<%= underscore(name) %>'] }));
