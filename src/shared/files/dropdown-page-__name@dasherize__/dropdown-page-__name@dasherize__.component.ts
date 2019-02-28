@@ -28,6 +28,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   @Input() isConditional = false;
   @Input() keyboardKey: 'Enter' | 'Any' = 'Enter';
   @Input() keyUpTimes = 3;
+  @Input() loadOnInit = false;
   @Input() search<%= classify(name) %>: Search<%= classify(name) %>;
   @Output() changeDropdown = new EventEmitter<any>();
   entities$ = this.store.pipe(select(from<%= classify(name) %>.getAllEntities));
