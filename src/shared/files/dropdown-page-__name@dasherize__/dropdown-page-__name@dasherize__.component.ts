@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Store, select } from '@ngrx/store';
@@ -13,7 +13,7 @@ import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(
   templateUrl: './dropdown-page-<%= dasherize(name) %>.component.html',
   styles: []
 })
-export class DropdownPage<%= classify(name) %>Component implements OnInit {
+export class DropdownPage<%= classify(name) %>Component implements OnChanges, OnInit {
 
   @Input() group: FormGroup;
   @Input() groupName: string;
@@ -40,19 +40,40 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
     private store: Store<from<%= classify(name) %>.State>
   ) { }
 
+  ngOnChanges() {
+    if (this.isConditional) {
+      this.store.dispatch(new from<%= classify(name) %>.Reset({ redirect: false }));
+    }
+  }
+
   ngOnInit() {
+    if (this.loadOnInit && this.search<%= classify(name) %>) {
+      setTimeout(() => {
+        this.onLoad({
+          <%= underscore(name) %>: {
+            ...initialState.query.<%= underscore(name) %>,
+            [this.optionLabel]: event
+          },
+          // TODO:
+        });
+      });
+    }
+  }
+
+  onLoad(search<%= classify(name) %>: Search<%= classify(name) %>) {
+    this.store.dispatch(new from<%= classify(name) %>.LoadEntityShared({
+      search: search<%= classify(name) %>
+    }));
   }
 
   keyUp(event) {
-    this.store.dispatch(new from<%= classify(name) %>.LoadEntityShared({
-      search: {
-        <%= underscore(name) %>: {
-          ...initialState.query.<%= underscore(name) %>,
-          [this.optionLabel]: event
-        },
-        // TODO:
-      }
-    }));
+    this.onLoad({
+      <%= underscore(name) %>: {
+        ...initialState.query.<%= underscore(name) %>,
+        [this.optionLabel]: event
+      },
+      // TODO:
+    });
   }
 
   handleChange(event) {
