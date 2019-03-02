@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 import { Store, select } from '@ngrx/store';
 import * as from<%= classify(name) %> from '@web/app/<%= path %>/<%= dasherize(name) %>/store';
+import { initialState } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/search-<%= dasherize(name) %>.reducer';
 
 import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
 
@@ -20,6 +21,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
   @Input() options: string[];
   @Input() optionLabel: string;
   @Input() filter = true;
+  @Input() onlyShow: 'store' | 'store_form' | 'form' = 'store_form';
   @Input() placeholder: string[];
   @Input() filterPlaceholder: string[];
   @Input() showClear: boolean;
@@ -45,7 +47,8 @@ export class DropdownPage<%= classify(name) %>Component implements OnInit {
     this.store.dispatch(new from<%= classify(name) %>.LoadEntityShared({
       search: {
         <%= underscore(name) %>: {
-          // TODO:
+          ...initialState.query.<%= underscore(name) %>,
+          [this.optionLabel]: event
         },
         // TODO:
       }
