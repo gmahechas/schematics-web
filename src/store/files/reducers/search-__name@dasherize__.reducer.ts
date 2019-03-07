@@ -25,11 +25,7 @@ export function reducer(state = initialState, action: EntityActions): State {
       return {
         ...state,
         loaded: false,
-        query: { 
-          <%= underscore(name) %>: action.payload.search.<%= underscore(name) %>
-          // TODO:
-        }
-      };
+        query: { ...state.query, ...action.payload.search }
     }
 
     case EntityActionTypes.LoadSuccessEntity: {

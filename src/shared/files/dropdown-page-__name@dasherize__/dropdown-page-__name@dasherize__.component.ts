@@ -51,8 +51,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnChanges, On
       setTimeout(() => {
         this.onLoad({
           <%= underscore(name) %>: {
-            ...initialState.query.<%= underscore(name) %>,
-            [this.optionLabel]: event
+            // TODO:
           },
           // TODO:
         });
