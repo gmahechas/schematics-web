@@ -22,7 +22,7 @@ export class Layout<%= classify(name) %>Effects {
       from<%= classify(name) %>Actions.EntityActionTypes.LoadEntityShared
     ),
     tap(() => {
-      this.store.dispatch(new fromCore.ShowSpinner());
+      this.store.dispatch(new fromCore.ShowSpinner({ toggle: true }));
     })
   );
 
@@ -32,7 +32,7 @@ export class Layout<%= classify(name) %>Effects {
       from<%= classify(name) %>Actions.EntityActionTypes.LoadSuccessEntity
     ),
     tap(() => {
-      this.store.dispatch(new fromCore.CloseSpinner());
+      this.store.dispatch(new fromCore.ShowSpinner({ toggle: false }));
     })
   );
 
@@ -44,7 +44,7 @@ export class Layout<%= classify(name) %>Effects {
       from<%= classify(name) %>Actions.EntityActionTypes.DestroySuccessEntity
     ),
     tap(() => {
-      this.store.dispatch(new fromCore.CloseSpinner());
+      this.store.dispatch(new fromCore.ShowSpinner({ toggle: false }));
       this.store.dispatch(new fromCore.ShowMessages({
         messages: [
           { severity: 'success', summary: 'Exito', detail: 'Se llevo a cabo', key: 'toast' }
@@ -62,7 +62,7 @@ export class Layout<%= classify(name) %>Effects {
       from<%= classify(name) %>Actions.EntityActionTypes.DestroyFailEntity
     ),
     tap(() => {
-      this.store.dispatch(new fromCore.CloseSpinner());
+      this.store.dispatch(new fromCore.ShowSpinner({ toggle: false }));
       this.store.dispatch(new fromCore.ShowMessages({
         messages: [
           { severity: 'error', summary: 'Error', detail: 'Ha ocurrido un error.', key: 'toast' }
