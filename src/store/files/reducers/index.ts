@@ -1,4 +1,4 @@
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, combineReducers, Action } from '@ngrx/store';
 
 import * as fromEntity from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/entity-<%= dasherize(name) %>.reducer';
 import * as fromSearch from '@web/app/<%= path %>/<%= dasherize(name) %>/store/reducers/search-<%= dasherize(name) %>.reducer';
@@ -17,11 +17,13 @@ export interface State extends fromCore.State {
   <%= underscore(name) %>: <%= classify(name) %>State;
 }
 
-export const reducers: ActionReducerMap<<%= classify(name) %>State> = {
-  entity: fromEntity.reducer,
-  search: fromSearch.reducer,
-  pagination: fromPagination.reducer,
-  layout: fromLayout.reducer
-};
+export function reducers(state: <%= classify(name) %>State | undefined, action: Action) {
+  return combineReducers({
+    entity: fromEntity.reducer,
+    search: fromSearch.reducer,
+    pagination: fromPagination.reducer,
+    layout: fromLayout.reducer,
+  })(state, action);
+}
 
 export const get<%= classify(name) %>State = createFeatureSelector<State, <%= classify(name) %>State>('<%= underscore(name) %>');
