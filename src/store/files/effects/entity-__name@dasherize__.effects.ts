@@ -18,8 +18,8 @@ export class Entity<%= classify(name) %>Effects {
 
   loadEntity$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<from<%= classify(name) %>Actions.LoadEntity>(from<%= classify(name) %>Actions.EntityActionTypes.LoadEntity),
-      map(action => action.payload.search),
+      ofType(from<%= classify(name) %>Actions.EntityActions.LoadEntity),
+      map(action => action.search),
       withLatestFrom(
         this.store.pipe(select(from<%= classify(name) %>Selectors.getPerPage)),
         this.store.pipe(select(from<%= classify(name) %>Selectors.getCurrentPage))
@@ -28,8 +28,8 @@ export class Entity<%= classify(name) %>Effects {
         perPage = (perPage) ? perPage : search<%= classify(name) %>.limit;
         currentPage = (currentPage) ? currentPage : search<%= classify(name) %>.page;
         return this.<%= camelize(name) %>Service.load({ ...search<%= classify(name) %>, limit: perPage, page: currentPage }).pipe(
-          map(({ data }) => new from<%= classify(name) %>Actions.LoadSuccessEntity({ entities: data })),
-          catchError((error) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error })))
+          map(({ data }) => from<%= classify(name) %>Actions.EntityActions.LoadSuccessEntity({ entities: data })),
+          catchError((error) => of(from<%= classify(name) %>Actions.EntityActions.LoadFailEntity({ error })))
         );
       })
     )
@@ -37,12 +37,12 @@ export class Entity<%= classify(name) %>Effects {
 
   storeEntity$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<from<%= classify(name) %>Actions.StoreEntity>(from<%= classify(name) %>Actions.EntityActionTypes.StoreEntity),
-      map(action => action.payload.entity),
+      ofType(from<%= classify(name) %>Actions.EntityActions.StoreEntity),
+      map(action => action.entity),
       mergeMap((<%= name %>: fromModels.<%= classify(name) %>) => {
         return this.<%= camelize(name) %>Service.store(<%= name %>).pipe(
-          map(({ data }) => new from<%= classify(name) %>Actions.StoreSuccessEntity({ entity: data })),
-          catchError((error) => of(new from<%= classify(name) %>Actions.StoreFailEntity({ error })))
+          map(({ data }) => from<%= classify(name) %>Actions.EntityActions.StoreSuccessEntity({ entity: data })),
+          catchError((error) => of(from<%= classify(name) %>Actions.EntityActions.StoreFailEntity({ error })))
         );
       })
     )
@@ -50,12 +50,12 @@ export class Entity<%= classify(name) %>Effects {
 
   updateEntity$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<from<%= classify(name) %>Actions.UpdateEntity>(from<%= classify(name) %>Actions.EntityActionTypes.UpdateEntity),
-      map(action => action.payload.entity),
+      ofType(from<%= classify(name) %>Actions.EntityActions.UpdateEntity),
+      map(action => action.entity),
       mergeMap((<%= name %>: fromModels.<%= classify(name) %>) => {
         return this.<%= camelize(name) %>Service.update(<%= name %>).pipe(
-          map(({ data }) => new from<%= classify(name) %>Actions.UpdateSuccessEntity({ entity: data })),
-          catchError((error) => of(new from<%= classify(name) %>Actions.UpdateFailEntity({ error })))
+          map(({ data }) => from<%= classify(name) %>Actions.EntityActions.UpdateSuccessEntity({ entity: data })),
+          catchError((error) => of(from<%= classify(name) %>Actions.EntityActions.UpdateFailEntity({ error })))
         );
       })
     )
@@ -63,12 +63,12 @@ export class Entity<%= classify(name) %>Effects {
 
   destroyEntity$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<from<%= classify(name) %>Actions.DestroyEntity>(from<%= classify(name) %>Actions.EntityActionTypes.DestroyEntity),
-      map(action => action.payload.entity),
+      ofType(from<%= classify(name) %>Actions.EntityActions.DestroyEntity),
+      map(action => action.entity),
       mergeMap((<%= name %>: fromModels.<%= classify(name) %>) => {
         return this.<%= camelize(name) %>Service.destroy(<%= name %>).pipe(
-          map(({ data }) => new from<%= classify(name) %>Actions.DestroySuccessEntity({ entity: data })),
-          catchError((error) => of(new from<%= classify(name) %>Actions.DestroyFailEntity({ error })))
+          map(({ data }) => from<%= classify(name) %>Actions.EntityActions.DestroySuccessEntity({ entity: data })),
+          catchError((error) => of(from<%= classify(name) %>Actions.EntityActions.DestroyFailEntity({ error })))
         );
       })
     )
@@ -76,16 +76,16 @@ export class Entity<%= classify(name) %>Effects {
 
   paginateEntity$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<from<%= classify(name) %>Actions.PaginateEntity>(from<%= classify(name) %>Actions.EntityActionTypes.PaginateEntity),
-      map(action => action.payload.page),
+      ofType(from<%= classify(name) %>Actions.EntityActions.PaginateEntity),
+      map(action => action.page),
       withLatestFrom(
         this.store.pipe(select(from<%= classify(name) %>Selectors.getPerPage)),
         this.store.pipe(select(from<%= classify(name) %>Selectors.getQuery))
       ),
       mergeMap(([currentPage, perPage, search<%= classify(name) %>]: [number, number, fromModels.Search<%= classify(name) %>]) => {
         return from(this.<%= camelize(name) %>Service.pagination({ ...search<%= classify(name) %>, limit: perPage, page: currentPage })).pipe(
-          map(({ data }) => new from<%= classify(name) %>Actions.LoadSuccessEntity({ entities: data })),
-          catchError((error) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error })))
+          map(({ data }) => from<%= classify(name) %>Actions.EntityActions.LoadSuccessEntity({ entities: data })),
+          catchError((error) => of(from<%= classify(name) %>Actions.EntityActions.LoadFailEntity({ error })))
         );
       })
     )
@@ -93,27 +93,26 @@ export class Entity<%= classify(name) %>Effects {
 
   loadEntityShared$ = createEffect(() => ({ debounce = 600, scheduler = asyncScheduler } = {}): Observable<Action> =>
     this.actions$.pipe(
-      ofType<from<%= classify(name) %>Actions.LoadEntityShared>(from<%= classify(name) %>Actions.EntityActionTypes.LoadEntityShared),
+      ofType(from<%= classify(name) %>Actions.EntityActions.LoadEntityShared),
       debounceTime(debounce, scheduler),
-      map(action => action.payload.search),
+      map(action => action.search),
       switchMap((search<%= classify(name) %>: fromModels.Search<%= classify(name) %>) => {
         if (
           search<%= classify(name) %> === '' // TODO:
-          ) {
+        ) {
           return EMPTY;
         }
 
         const nextSearch$ = this.actions$.pipe(
-          ofType(from<%= classify(name) %>Actions.EntityActionTypes.LoadEntityShared),
+          ofType(from<%= classify(name) %>Actions.EntityActions.LoadEntityShared),
           skip(1)
         );
 
         return this.<%= camelize(name) %>Service.load({ ...search<%= classify(name) %>, limit: 20, page: 1 }).pipe(
           takeUntil(nextSearch$),
-          map(({ data }) => new from<%= classify(name) %>Actions.LoadSuccessEntity({ entities: data })),
-          catchError((error) => of(new from<%= classify(name) %>Actions.LoadFailEntity({ error })))
+          map(({ data }) => from<%= classify(name) %>Actions.EntityActions.LoadSuccessEntity({ entities: data })),
+          catchError((error) => of(from<%= classify(name) %>Actions.EntityActions.LoadFailEntity({ error })))
         );
-
       })
     )
   );

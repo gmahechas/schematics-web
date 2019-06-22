@@ -25,21 +25,21 @@ export class FormPage<%= classify(name) %>Component implements OnInit {
   }
 
   onStore(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new from<%= classify(name) %>.StoreEntity({ entity: <%= name %> }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.StoreEntity({ entity: <%= name %> }));
   }
 
   onUpdate(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new from<%= classify(name) %>.UpdateEntity({ entity: <%= name %> }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.UpdateEntity({ entity: <%= name %> }));
   }
 
   onCancel() {
-    this.store.dispatch(new from<%= classify(name) %>.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= name %>']
     }));
   }
 
   onDestroy(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new from<%= classify(name) %>.DestroyEntity({ entity: <%= name %> }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.DestroyEntity({ entity: <%= name %> }));
   }
 }

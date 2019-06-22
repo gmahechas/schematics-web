@@ -55,7 +55,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
   }
 
   onLoad(<%= name %>Search: Search<%= classify(name) %>) {
-    this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.LoadEntity({
       search: {
         ...<%= name %>Search,
         limit: 20,
@@ -65,32 +65,32 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
   }
 
   onCreate() {
-    this.store.dispatch(new from<%= classify(name) %>.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>', 'create']
     }));
   }
 
   onEdit(<%= name %>: <%= classify(name) %>) {
-    this.store.dispatch(new from<%= classify(name) %>.SetSelected({ selected: { selectedEntity: <%= name %> } }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.SetSelected({ selected: { selectedEntity: <%= name %> } }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>', <%= name %>.<%= underscore(name) %>_id]
     }));
   }
 
   onPaginate(event) {
-    this.store.dispatch(new from<%= classify(name) %>.PaginateEntity({ page: event.page + 1 }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.PaginateEntity({ page: event.page + 1 }));
   }
 
   onCancel() {
-    this.store.dispatch(new from<%= classify(name) %>.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
     this.store.dispatch(new fromCore.Go({
       path: ['<%= underscore(name) %>']
     }));
   }
 
   onResetSearch() {
-    this.store.dispatch(new from<%= classify(name) %>.Reset({ redirect: true }));
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.Reset({ redirect: true }));
   }
 
   ngOnDestroy() {

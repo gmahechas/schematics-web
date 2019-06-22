@@ -44,7 +44,7 @@ export class <%= classify(name) %>ExistGuard implements CanActivate {
       select(from<%= classify(name) %>.getLoaded),
       tap(loaded => {
         if (!loaded) {
-          this.store.dispatch(new from<%= classify(name) %>.LoadEntity({
+          this.store.dispatch(from<%= classify(name) %>.EntityActions.LoadEntity({
             search: {
               <%= underscore(name) %>: {
                 <%= underscore(name) %>_id: <%= camelize(name) %>Id,

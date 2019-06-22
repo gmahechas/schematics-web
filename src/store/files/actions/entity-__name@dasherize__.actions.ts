@@ -1,120 +1,83 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
 import * as fromModels from '@web/app/<%= path %>/<%= dasherize(name) %>/models';
 
-export enum EntityActionTypes {
-  LoadEntity = '[<%= classify(name) %>] Load Entity ',
-  LoadSuccessEntity = '[<%= classify(name) %>] Load Success Entity',
-  LoadFailEntity = '[<%= classify(name) %>] Load Fail Entity',
-  StoreEntity = '[<%= classify(name) %>] Store Entity',
-  StoreSuccessEntity = '[<%= classify(name) %>] Store Success Entity',
-  StoreFailEntity = '[<%= classify(name) %>] Store Fail Entity',
-  UpdateEntity = '[<%= classify(name) %>] Update Entity',
-  UpdateSuccessEntity = '[<%= classify(name) %>] Update Success Entity',
-  UpdateFailEntity = '[<%= classify(name) %>] Update Fail Entity',
-  DestroyEntity = '[<%= classify(name) %>] Destroy Entity',
-  DestroySuccessEntity = '[<%= classify(name) %>] Destroy Success Entity',
-  DestroyFailEntity = '[<%= classify(name) %>] Destroy Fail Entity',
-  PaginateEntity = '[<%= classify(name) %>] Paginate Entity',
-  LoadEntityShared = '[<%= classify(name) %>] Load Entity Shared',
-  Reset = '[<%= classify(name) %>] Reset',
-  SetSelected = '[<%= classify(name) %>] Set Selected'
-}
+export const LoadEntity = createAction(
+  '[<%= classify(name) %>] Load Entity',
+  props<{ search: fromModels.Search<%= classify(name) %> }>()
+);
 
-export class LoadEntity implements Action {
-  readonly type = EntityActionTypes.LoadEntity;
-  constructor(public payload: { search: fromModels.Search<%= classify(name) %> }) { }
-}
+export const LoadSuccessEntity = createAction(
+  '[<%= classify(name) %>] Load Success Entity',
+  props<{ entities: fromModels.Pagination<%= classify(name) %> }>()
+);
 
-export class LoadSuccessEntity implements Action {
-  readonly type = EntityActionTypes.LoadSuccessEntity;
-  constructor(public payload: { entities: fromModels.Pagination<%= classify(name) %> }) { }
-}
+export const LoadFailEntity = createAction(
+  '[<%= classify(name) %>] Load Fail Entity',
+  props<{ error: any }>()
+);
 
-export class LoadFailEntity implements Action {
-  readonly type = EntityActionTypes.LoadFailEntity;
-  constructor(public payload: { error: any }) { }
-}
+export const StoreEntity = createAction(
+  '[<%= classify(name) %>] Store Entity',
+  props<{ entity: fromModels.<%= classify(name) %> }>()
+);
 
-export class StoreEntity implements Action {
-  readonly type = EntityActionTypes.StoreEntity;
-  constructor(public payload: { entity: fromModels.<%= classify(name) %> }) { }
-}
+export const StoreSuccessEntity = createAction(
+  '[<%= classify(name) %>] Store Success Entity',
+  props<{ entity: fromModels.Store<%= classify(name) %> }>()
+);
 
-export class StoreSuccessEntity implements Action {
-  readonly type = EntityActionTypes.StoreSuccessEntity;
-  constructor(public payload: { entity: fromModels.Store<%= classify(name) %> }) { }
-}
+export const StoreFailEntity = createAction(
+  '[<%= classify(name) %>] Store Fail Entity',
+  props<{ error: any }>()
+);
 
-export class StoreFailEntity implements Action {
-  readonly type = EntityActionTypes.StoreFailEntity;
-  constructor(public payload: { error: any }) { }
-}
+export const UpdateEntity = createAction(
+  '[<%= classify(name) %>] Update Entity',
+  props<{ entity: fromModels.<%= classify(name) %> }>()
+);
 
-export class UpdateEntity implements Action {
-  readonly type = EntityActionTypes.UpdateEntity;
-  constructor(public payload: { entity: fromModels.<%= classify(name) %> }) { }
-}
+export const UpdateSuccessEntity = createAction(
+  '[<%= classify(name) %>] Update Success Entity',
+  props<{ entity: fromModels.Update<%= classify(name) %> }>()
+);
 
-export class UpdateSuccessEntity implements Action {
-  readonly type = EntityActionTypes.UpdateSuccessEntity;
-  constructor(public payload: { entity: fromModels.Update<%= classify(name) %> }) { }
-}
+export const UpdateFailEntity = createAction(
+  '[<%= classify(name) %>] Update Fail Entity',
+  props<{ error: any }>()
+);
 
-export class UpdateFailEntity implements Action {
-  readonly type = EntityActionTypes.UpdateFailEntity;
-  constructor(public payload: { error: any }) { }
-}
+export const DestroyEntity = createAction(
+  '[<%= classify(name) %>] Destroy Entity',
+  props<{ entity: fromModels.<%= classify(name) %> }>()
+);
 
-export class DestroyEntity implements Action {
-  readonly type = EntityActionTypes.DestroyEntity;
-  constructor(public payload: { entity: fromModels.<%= classify(name) %> }) { }
-}
+export const DestroySuccessEntity = createAction(
+  '[<%= classify(name) %>] Destroy Success Entity',
+  props<{ entity: fromModels.Destroy<%= classify(name) %> }>()
+);
 
-export class DestroySuccessEntity implements Action {
-  readonly type = EntityActionTypes.DestroySuccessEntity;
-  constructor(public payload: { entity: fromModels.Destroy<%= classify(name) %> }) { }
-}
+export const DestroyFailEntity = createAction(
+  '[<%= classify(name) %>] Destroy Fail Entity',
+  props<{ error: any }>()
+);
 
-export class DestroyFailEntity implements Action {
-  readonly type = EntityActionTypes.DestroyFailEntity;
-  constructor(public payload: { error: any }) { }
-}
+export const PaginateEntity = createAction(
+  '[<%= classify(name) %>] Paginate Entity',
+  props<{ page: number }>()
+);
 
-export class PaginateEntity implements Action {
-  readonly type = EntityActionTypes.PaginateEntity;
-  constructor(public payload: { page: number }) { }
-}
+export const LoadEntityShared = createAction(
+  '[<%= classify(name) %>] Load Entity Shared',
+  props<{ search: fromModels.Search<%= classify(name) %>}>()
+);
 
-export class LoadEntityShared implements Action {
-  readonly type = EntityActionTypes.LoadEntityShared;
-  constructor(public payload: { search: fromModels.Search<%= classify(name) %> }) { }
-}
+export const Reset = createAction(
+  '[<%= classify(name) %>] Reset',
+  props<{ redirect: boolean }>()
+);
 
-export class Reset implements Action {
-  readonly type = EntityActionTypes.Reset;
-  constructor(public payload: { redirect: boolean }) { }
-}
-
-export class SetSelected implements Action {
-  readonly type = EntityActionTypes.SetSelected;
-  constructor(public payload: { selected: fromModels.Selected<%= classify(name) %> }) { }
-}
-
-export type EntityActions =
-  | LoadEntity
-  | LoadSuccessEntity
-  | LoadFailEntity
-  | StoreEntity
-  | StoreSuccessEntity
-  | StoreFailEntity
-  | UpdateEntity
-  | UpdateSuccessEntity
-  | UpdateFailEntity
-  | DestroyEntity
-  | DestroySuccessEntity
-  | DestroyFailEntity
-  | PaginateEntity
-  | LoadEntityShared
-  | Reset
-  | SetSelected;
+export const SetSelected = createAction(
+  '[<%= classify(name) %>] Set Selected',
+  props<{ selected: fromModels.Selected<%= classify(name) %> }>()
+);

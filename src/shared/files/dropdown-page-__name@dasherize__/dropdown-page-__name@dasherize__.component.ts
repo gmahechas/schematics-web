@@ -42,7 +42,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnChanges, On
 
   ngOnChanges() {
     if (this.isConditional) {
-      this.store.dispatch(new from<%= classify(name) %>.Reset({ redirect: false }));
+      this.store.dispatch(from<%= classify(name) %>.EntityActions.Reset({ redirect: false }));
     }
   }
 
@@ -60,7 +60,7 @@ export class DropdownPage<%= classify(name) %>Component implements OnChanges, On
   }
 
   onLoad(search<%= classify(name) %>: Search<%= classify(name) %>) {
-    this.store.dispatch(new from<%= classify(name) %>.LoadEntityShared({
+    this.store.dispatch(from<%= classify(name) %>.EntityActions.LoadEntityShared({
       search: search<%= classify(name) %>
     }));
   }
