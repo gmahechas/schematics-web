@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { EntityActions } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions';
+import * as from<%= classify(name) %>Actions from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions';
 
 export interface State {
   total: number;
@@ -20,13 +20,13 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
   on(
-    EntityActions.LoadEntity,
+    from<%= classify(name) %>Actions.EntityActions.LoadEntity,
     (state) => ({
       ...initialState
     })
   ),
   on(
-    EntityActions.LoadSuccessEntity,
+    from<%= classify(name) %>Actions.EntityActions.LoadSuccessEntity,
     (state, { entities }) => ({
       ...state,
       total: entities.pagination<%= classify(name) %>.total,
@@ -37,9 +37,9 @@ export const reducer = createReducer(
     })
   ),
   on(
-    EntityActions.LoadFailEntity,
-    EntityActions.StoreSuccessEntity,
-    EntityActions.Reset,
+    from<%= classify(name) %>Actions.EntityActions.LoadFailEntity,
+    from<%= classify(name) %>Actions.EntityActions.StoreSuccessEntity,
+    from<%= classify(name) %>Actions.EntityActions.Reset,
     (state) => ({
       ...initialState
     })

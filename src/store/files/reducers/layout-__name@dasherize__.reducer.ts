@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { EntityActions } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions';
+import * as from<%= classify(name) %>Actions from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions';
 import { Selected<%= classify(name) %>, initialStateSelected<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/selected-<%= dasherize(name) %>.model';
 
 export interface State {
@@ -17,17 +17,17 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
   on(
-    EntityActions.SetSelected,
+    from<%= classify(name) %>Actions.EntityActions.SetSelected,
     (state, { selected }) => ({
       ...state,
       selected
     })
   ),
   on(
-    EntityActions.LoadFailEntity,
-    EntityActions.StoreFailEntity,
-    EntityActions.UpdateFailEntity,
-    EntityActions.DestroyFailEntity,
+    from<%= classify(name) %>Actions.EntityActions.LoadFailEntity,
+    from<%= classify(name) %>Actions.EntityActions.StoreFailEntity,
+    from<%= classify(name) %>Actions.EntityActions.UpdateFailEntity,
+    from<%= classify(name) %>Actions.EntityActions.DestroyFailEntity,
     (state, { error }) => ({
       ...state,
       selected: initialStateSelected<%= classify(name) %>,
@@ -36,21 +36,21 @@ export const reducer = createReducer(
     })
   ),
   on(
-    EntityActions.LoadEntity,
-    EntityActions.PaginateEntity,
-    EntityActions.StoreEntity,
-    EntityActions.UpdateEntity,
-    EntityActions.DestroyEntity,
+    from<%= classify(name) %>Actions.EntityActions.LoadEntity,
+    from<%= classify(name) %>Actions.EntityActions.PaginateEntity,
+    from<%= classify(name) %>Actions.EntityActions.StoreEntity,
+    from<%= classify(name) %>Actions.EntityActions.UpdateEntity,
+    from<%= classify(name) %>Actions.EntityActions.DestroyEntity,
     (state) => ({
       ...state,
       pending: true
     })
   ),
   on(
-    EntityActions.LoadSuccessEntity,
-    EntityActions.StoreSuccessEntity,
-    EntityActions.UpdateSuccessEntity,
-    EntityActions.DestroySuccessEntity,
+    from<%= classify(name) %>Actions.EntityActions.LoadSuccessEntity,
+    from<%= classify(name) %>Actions.EntityActions.StoreSuccessEntity,
+    from<%= classify(name) %>Actions.EntityActions.UpdateSuccessEntity,
+    from<%= classify(name) %>Actions.EntityActions.DestroySuccessEntity,
     (state) => ({
       ...state,
       selected: initialStateSelected<%= classify(name) %>,
@@ -58,7 +58,7 @@ export const reducer = createReducer(
     })
   ),
   on(
-    EntityActions.Reset,
+    from<%= classify(name) %>Actions.EntityActions.Reset,
     (state) => ({
       ...initialState
     })

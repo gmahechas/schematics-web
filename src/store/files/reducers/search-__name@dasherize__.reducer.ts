@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { EntityActions } from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions';
+import * as from<%= classify(name) %>Actions from '@web/app/<%= path %>/<%= dasherize(name) %>/store/actions';
 import { Search<%= classify(name) %> } from '@web/app/<%= path %>/<%= dasherize(name) %>/models/search-<%= dasherize(name) %>.model';
 
 export interface State {
@@ -20,8 +20,8 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
   on(
-    EntityActions.LoadEntity,
-    EntityActions.LoadEntityShared,
+    from<%= classify(name) %>Actions.EntityActions.LoadEntity,
+    from<%= classify(name) %>Actions.EntityActions.LoadEntityShared,
     (state, { search }) => ({
       ...state,
       loaded: false,
@@ -31,21 +31,21 @@ export const reducer = createReducer(
     })
   ),
   on(
-    EntityActions.LoadSuccessEntity,
+    from<%= classify(name) %>Actions.EntityActions.LoadSuccessEntity,
     (state) => ({
       ...state,
       loaded: true
     })
   ),
   on(
-    EntityActions.LoadFailEntity,
+    from<%= classify(name) %>Actions.EntityActions.LoadFailEntity,
     (state) => ({
       ...state,
       loaded: false
     })
   ),
   on(
-    EntityActions.Reset,
+    from<%= classify(name) %>Actions.EntityActions.Reset,
     (state) => ({
       ...initialState
     })
