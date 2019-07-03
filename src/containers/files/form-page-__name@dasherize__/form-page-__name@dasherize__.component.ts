@@ -34,7 +34,7 @@ export class FormPage<%= classify(name) %>Component implements OnInit {
 
   onCancel() {
     this.store.dispatch(from<%= classify(name) %>.EntityActions.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
-    this.store.dispatch(new fromCore.Go({
+    this.store.dispatch(fromCore.RouterActions.Go({
       path: ['<%= name %>']
     }));
   }

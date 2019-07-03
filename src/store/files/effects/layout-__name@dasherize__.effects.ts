@@ -22,7 +22,7 @@ export class Layout<%= classify(name) %>Effects {
         from<%= classify(name) %>Actions.EntityActions.LoadEntityShared
       ),
       tap(() => {
-        this.store.dispatch(new fromCore.ShowSpinner({ toggle: true }));
+        this.store.dispatch(fromCore.LayoutActions.ShowSpinner({ toggle: true }));
       })
     ),
     { dispatch: false }
@@ -34,7 +34,7 @@ export class Layout<%= classify(name) %>Effects {
         from<%= classify(name) %>Actions.EntityActions.LoadSuccessEntity
       ),
       tap(() => {
-        this.store.dispatch(new fromCore.ShowSpinner({ toggle: false }));
+        this.store.dispatch(fromCore.LayoutActions.ShowSpinner({ toggle: false }));
       })
     ),
     { dispatch: false }
@@ -48,8 +48,8 @@ export class Layout<%= classify(name) %>Effects {
         from<%= classify(name) %>Actions.EntityActions.DestroySuccessEntity
       ),
       tap(() => {
-        this.store.dispatch(new fromCore.ShowSpinner({ toggle: false }));
-        this.store.dispatch(new fromCore.ShowMessages({
+        this.store.dispatch(fromCore.LayoutActions.ShowSpinner({ toggle: false }));
+        this.store.dispatch(fromCore.LayoutActions.ShowMessages({
           messages: [
             { severity: 'success', summary: 'Exito', detail: 'Se llevo a cabo', key: 'toast' }
           ]
@@ -68,8 +68,8 @@ export class Layout<%= classify(name) %>Effects {
         from<%= classify(name) %>Actions.EntityActions.DestroyFailEntity
       ),
       tap(() => {
-        this.store.dispatch(new fromCore.ShowSpinner({ toggle: false }));
-        this.store.dispatch(new fromCore.ShowMessages({
+        this.store.dispatch(fromCore.LayoutActions.ShowSpinner({ toggle: false }));
+        this.store.dispatch(fromCore.LayoutActions.ShowMessages({
           messages: [
             { severity: 'error', summary: 'Error', detail: 'Ha ocurrido un error.', key: 'toast' }
           ]
@@ -89,7 +89,7 @@ export class Layout<%= classify(name) %>Effects {
         from<%= classify(name) %>Actions.EntityActions.DestroySuccessEntity
       ),
       tap(() => {
-        this.store.dispatch(new fromCore.Go({ path: ['<%= underscore(name) %>'] }));
+        this.store.dispatch(fromCore.RouterActions.Go({ path: ['<%= underscore(name) %>'] }));
       })
     ),
     { dispatch: false }
@@ -100,7 +100,7 @@ export class Layout<%= classify(name) %>Effects {
       ofType(from<%= classify(name) %>Actions.EntityActions.Reset),
       tap(({ redirect }) => {
         if (redirect) {
-          this.store.dispatch(new fromCore.Go({ path: ['<%= underscore(name) %>'] }));
+          this.store.dispatch(fromCore.RouterActions.Go({ path: ['<%= underscore(name) %>'] }));
         }
       })
     ),

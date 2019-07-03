@@ -46,7 +46,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
       (selected: Selected<%= classify(name) %>) => {
         if (selected.selectedEntity) {
           this.selectedEntity = selected.selectedEntity;
-          this.store.dispatch(new fromCore.Go({
+          this.store.dispatch(fromCore.RouterActions.Go({
             path: ['<%= underscore(name) %>', selected.selectedEntity.<%= underscore(name) %>_id]
           }));
         }
@@ -66,14 +66,14 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
 
   onCreate() {
     this.store.dispatch(from<%= classify(name) %>.EntityActions.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
-    this.store.dispatch(new fromCore.Go({
+    this.store.dispatch(fromCore.RouterActions.Go({
       path: ['<%= underscore(name) %>', 'create']
     }));
   }
 
   onEdit(<%= name %>: <%= classify(name) %>) {
     this.store.dispatch(from<%= classify(name) %>.EntityActions.SetSelected({ selected: { selectedEntity: <%= name %> } }));
-    this.store.dispatch(new fromCore.Go({
+    this.store.dispatch(fromCore.RouterActions.Go({
       path: ['<%= underscore(name) %>', <%= name %>.<%= underscore(name) %>_id]
     }));
   }
@@ -84,7 +84,7 @@ export class IndexPage<%= classify(name) %>Component implements OnInit, OnDestro
 
   onCancel() {
     this.store.dispatch(from<%= classify(name) %>.EntityActions.SetSelected({ selected: initialStateSelected<%= classify(name) %> }));
-    this.store.dispatch(new fromCore.Go({
+    this.store.dispatch(fromCore.RouterActions.Go({
       path: ['<%= underscore(name) %>']
     }));
   }

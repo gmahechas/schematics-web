@@ -5,5 +5,5 @@ export interface Selected<%= classify(name) %> {
 }
 
 export const initialStateSelected<%= classify(name) %>: Selected<%= classify(name) %> = {
-  selectedEntity?: null
+  selectedEntity: null
 };
