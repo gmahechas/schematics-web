@@ -31,7 +31,7 @@ export const reducer = createReducer(
     (state, { error }) => ({
       ...state,
       selected: initialStateSelected<%= classify(name) %>,
-      error,
+      error: JSON.stringify(error),
       pending: false
     })
   ),
